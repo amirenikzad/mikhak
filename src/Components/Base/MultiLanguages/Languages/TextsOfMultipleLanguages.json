@@ -1,0 +1,1791 @@
+{
+  "0": {
+    "en": "User",
+    "fa": "کاربر"
+  },
+  "1": {
+    "en": "Name",
+    "fa": "نام"
+  },
+  "2": {
+    "en": "Active",
+    "fa": "فعال"
+  },
+  "3": {
+    "en": "Admin",
+    "fa": "ادمین"
+  },
+  "4": {
+    "en": "Action",
+    "fa": "اقدام"
+  },
+  "5": {
+    "en": "Active / Inactive",
+    "fa": "فعال / غیرفعال"
+  },
+  "6": {
+    "en": "Admin / Not Admin",
+    "fa": "ادمین / غیرادمین"
+  },
+  "7": {
+    "en": "Remove",
+    "fa": "حذف"
+  },
+  "8": {
+    "en": "More",
+    "fa": "بیشتر"
+  },
+  "9": {
+    "en": "NEW",
+    "fa": "جدید"
+  },
+  "10": {
+    "en": "Search",
+    "fa": "جستجو کنید"
+  },
+  "11": {
+    "en": "Profile",
+    "fa": "پروفایل"
+  },
+  "12": {
+    "en": "Permission",
+    "fa": "دسترسی"
+  },
+  "13": {
+    "en": "User management",
+    "fa": "مدیریت کاربران"
+  },
+  "14": {
+    "en": "Username",
+    "fa": "نام کاربری"
+  },
+  "15": {
+    "en": "Password",
+    "fa": "رمز عبور"
+  },
+  "16": {
+    "en": "Confirm Password",
+    "fa": "تایید رمز عبور"
+  },
+  "17": {
+    "en": "Submit",
+    "fa": "ثبت"
+  },
+  "18": {
+    "en": "Email",
+    "fa": "ایمیل"
+  },
+  "19": {
+    "en": "Full Name",
+    "fa": "نام"
+  },
+  "20": {
+    "en": "Active",
+    "fa": "فعال"
+  },
+  "21": {
+    "en": "Hide",
+    "fa": "مخفی"
+  },
+  "22": {
+    "en": "Show",
+    "fa": "نمایش"
+  },
+  "23": {
+    "en": "System users are listed in this table. You can change user access.",
+    "fa": "کاربران سیستم در این جدول لیست شده اند. می‌توانید دسترسی‌ کاربران را تغییر دهید."
+  },
+  "24": {
+    "en": "An error has occurred",
+    "fa": "خطایی رخ داده است"
+  },
+  "25": {
+    "en": "Receiving information. please wait",
+    "fa": "در حال دریافت اطلاعات. لطفا صبر کنید"
+  },
+  "26": {
+    "en": "Fill in all the fields",
+    "fa": "تمامی مقادیر را تکمیل کنید"
+  },
+  "27": {
+    "en": "The entered Email is not correct",
+    "fa": "ایمیل وارد شده صحیح نمی‌باشد"
+  },
+  "28": {
+    "en": "The password and confirmation are not the same!",
+    "fa": "رمز عبور و تایید آن یکسان نمی باشد!"
+  },
+  "29": {
+    "en": "Register",
+    "fa": "ثبت نام"
+  },
+  "30": {
+    "en": "Message",
+    "fa": "پیغام"
+  },
+  "31": {
+    "en": "Cancel",
+    "fa": "انصراف"
+  },
+  "32": {
+    "en": "Previous",
+    "fa": "قبلی"
+  },
+  "33": {
+    "en": "Next",
+    "fa": "بعدی"
+  },
+  "34": {
+    "en": "Add Permission",
+    "fa": "ثبت دسترسی"
+  },
+  "35": {
+    "en": "Address",
+    "fa": "آدرس"
+  },
+  "36": {
+    "en": "Method",
+    "fa": "متد"
+  },
+  "37": {
+    "en": "Permission name",
+    "fa": "نام دسترسی"
+  },
+  "38": {
+    "en": "Description",
+    "fa": "توضیحات"
+  },
+  "39": {
+    "en": "All system accesses are listed in this table.",
+    "fa": "تمامی دسترسی‌های سیستم در این جدول لیست شده اند."
+  },
+  "40": {
+    "en": "Action",
+    "fa": "عملیات"
+  },
+  "41": {
+    "en": "Path",
+    "fa": "مسیر"
+  },
+  "42": {
+    "en": "Add Role",
+    "fa": "ثبت نقش"
+  },
+  "43": {
+    "en": "Role Name",
+    "fa": "نام نقش"
+  },
+  "44": {
+    "en": "Roles",
+    "fa": "نقش‌ها"
+  },
+  "45": {
+    "en": "All system roles are listed in this table.",
+    "fa": "تمامی نقش‌های سیستم در این جدول لیست شده اند."
+  },
+  "46": {
+    "en": "Role",
+    "fa": "نقش"
+  },
+  "47": {
+    "en": "Roles Permissions",
+    "fa": "مجوزهای نقش‌ها"
+  },
+  "48": {
+    "en": "All system roles permissions are listed in this table.",
+    "fa": "تمامی مجوزهای نقش‌ها سیستم در این جدول لیست شده اند."
+  },
+  "49": {
+    "en": "Users Roles",
+    "fa": "نقش های کاربران"
+  },
+  "50": {
+    "en": "All system users roles are listed in this table.",
+    "fa": "تمامی نقش‌های کاربران سیستم در این جدول لیست شده اند."
+  },
+  "51": {
+    "en": "Users",
+    "fa": "کاربران"
+  },
+  "52": {
+    "en": "Permissions",
+    "fa": "مجوز‌ها"
+  },
+  "53": {
+    "en": "An error occurred while receiving the list",
+    "fa": "در دریافت لیست خطایی رخ داده است"
+  },
+  "54": {
+    "en": "Forget Password",
+    "fa": "فراموشی رمز عبور"
+  },
+  "55": {
+    "en": "Reset Password",
+    "fa": "بازنشانی رمز عبور"
+  },
+  "56": {
+    "en": "Reset",
+    "fa": "بازنشانی"
+  },
+  "57": {
+    "en": "Code",
+    "fa": "کد"
+  },
+  "58": {
+    "en": "Enter a new password",
+    "fa": "رمز عبور جدید وارد کنید"
+  },
+  "59": {
+    "en": "Confirm new pass",
+    "fa": "تایید رمز عبور جدید"
+  },
+  "60": {
+    "en": "Resend Code",
+    "fa": "ارسال مجدد کد"
+  },
+  "61": {
+    "en": "Login",
+    "fa": "ورود"
+  },
+  "62": {
+    "en": "Forgot your password?",
+    "fa": "رمز عبور خود را فراموش کرده اید؟"
+  },
+  "63": {
+    "en": "Don\"t have an account? Register",
+    "fa": "حساب کاربری ندارید؟ ثبت نام کنید"
+  },
+  "64": {
+    "en": "Do you have an account? Login",
+    "fa": "حساب کاربری دارید؟ وارد شوید"
+  },
+  "65": {
+    "en": "No, let me think",
+    "fa": "نه بزار یکمی فکر کنم"
+  },
+  "66": {
+    "en": "Yes, delete it",
+    "fa": "بله حذف کن"
+  },
+  "67": {
+    "en": "Are you sure you want to delete it?",
+    "fa": "مطمئنی می خوای حذفش کنی؟"
+  },
+  "68": {
+    "en": "Role Permission",
+    "fa": "مجوز نقش"
+  },
+  "69": {
+    "en": "Exit",
+    "fa": "خروج"
+  },
+  "70": {
+    "en": "Failed to detect the orientation",
+    "fa": "نتوانست جهت را تشخیص دهد"
+  },
+  "71": {
+    "en": "Select image",
+    "fa": "انتخاب تصویر"
+  },
+  "72": {
+    "en": "Zoom",
+    "fa": "انتخاب تصویر"
+  },
+  "73": {
+    "en": "Rotate",
+    "fa": "چرخش"
+  },
+  "74": {
+    "en": "You have exited successfully",
+    "fa": "با موفقیت خارج شدید"
+  },
+  "75": {
+    "en": "Captcha",
+    "fa": "کپچا"
+  },
+  "76": {
+    "en": "Click to change",
+    "fa": "برای ویرایش کلیک کنید"
+  },
+  "77": {
+    "en": "Dashboard",
+    "fa": "پیشخان"
+  },
+  "78": {
+    "en": "Manage Mikhak Access",
+    "fa": "مدیریت دسترسی میخک"
+  },
+  "79": {
+    "en": "Expand",
+    "fa": "بسط دادن"
+  },
+  "80": {
+    "en": "Close",
+    "fa": "بستن"
+  },
+  "81": {
+    "en": "The requested page not found (404)",
+    "fa": "صفحه مورد نظر یافت نشد (404)"
+  },
+  "82": {
+    "en": "Click to return to the dashboard",
+    "fa": "برای بازگشت به پیشخان کلیک کنید"
+  },
+  "83": {
+    "en": "Edit",
+    "fa": "ویرایش"
+  },
+  "84": {
+    "en": "Edit Role",
+    "fa": "ویرایش نقش"
+  },
+  "85": {
+    "en": "Edit Permission",
+    "fa": "ویرایش دسترسی"
+  },
+  "86": {
+    "en": "Are you sure you wanna delete image?",
+    "fa": "عکس حذف شود؟"
+  },
+  "87": {
+    "en": "Configure Role Permission",
+    "fa": "پیکربندی مجوز نقش"
+  },
+  "88": {
+    "en": "Loading",
+    "fa": "در حال دریافت"
+  },
+  "89": {
+    "en": "Click to see more",
+    "fa": "برای مشاهده موارد بیشتر کلیک کنید"
+  },
+  "90": {
+    "en": "Click to remove selected image",
+    "fa": "برای حدف عکس انتخاب شده کلیک کنید"
+  },
+  "91": {
+    "en": "Mikhak",
+    "fa": "میخک"
+  },
+  "92": {
+    "en": "Default",
+    "fa": "پیش فرض"
+  },
+  "93": {
+    "en": "File is too large.",
+    "fa": "فایل خیلی بزرگ هست."
+  },
+  "94": {
+    "en": "Please select an image smaller than 1MB.",
+    "fa": "لطفا یک تصویر کوچکتر از 1 مگابایت انتخاب کنید."
+  },
+  "95": {
+    "en": "Image dimensions are too large.",
+    "fa": "ابعاد تصویر خیلی بزرگ است."
+  },
+  "96": {
+    "en": "Please select an image smaller than 1000x1000 pixels.",
+    "fa": "لطفاً یک تصویر کوچکتر از 1000x1000 پیکسل انتخاب کنید."
+  },
+  "97": {
+    "en": "You do not have access to modify this section",
+    "fa": "شما دسترسی لازم برای ویرایش این بخش را ندارید"
+  },
+  "98": {
+    "en": "We are checking your permissions, wait a while...",
+    "fa": "در حال بررسی دسترسی شما هستیم؛ کمی صبر کنید..."
+  },
+  "99": {
+    "en": "You do not have access to this page",
+    "fa": "شما به این صفحه دسترسی ندارید"
+  },
+  "100": {
+    "en": "All Permissions",
+    "fa": "تمام دسترسی ها"
+  },
+  "101": {
+    "en": "All Roles",
+    "fa": "تمام نقش ها"
+  },
+  "102": {
+    "en": "Advanced",
+    "fa": "پیشرفته"
+  },
+  "103": {
+    "en": "Functionalities",
+    "fa": "قابلیت ها"
+  },
+  "104": {
+    "en": "Functionality name",
+    "fa": "نام قابلیت"
+  },
+  "105": {
+    "en": "Functionality Description",
+    "fa": "توضیحات قابلیت"
+  },
+  "106": {
+    "en": "Host",
+    "fa": "هاست"
+  },
+  "107": {
+    "en": "Port",
+    "fa": "پورت"
+  },
+  "108": {
+    "en": "Header",
+    "fa": "هدر"
+  },
+  "109": {
+    "en": "Tags",
+    "fa": "تگ‌ها"
+  },
+  "110": {
+    "en": "Protocol",
+    "fa": "پروتکل"
+  },
+  "111": {
+    "en": "Retry",
+    "fa": "تلاش مجدد"
+  },
+  "112": {
+    "en": "Permission Action Name",
+    "fa": ""
+  },
+  "113": {
+    "en": "Write and press Enter",
+    "fa": "بنویس و اینتر را بزن"
+  },
+  "114": {
+    "en": "Add Functionality",
+    "fa": "اضافه کردن قابلیت"
+  },
+  "115": {
+    "en": "All Tags",
+    "fa": "تمامی تگ‌ها"
+  },
+  "116": {
+    "en": "Please wait",
+    "fa": "لطفا صبر کنید"
+  },
+  "117": {
+    "en": "All system functionalities are listed in this table.",
+    "fa": "تمامی قابلیت‌ها سیستم در این جدول لیست شده اند."
+  },
+  "118": {
+    "en": "You do not have permission to modify this section!",
+    "fa": "شما مجوز ویرایش این بخش را ندارید!"
+  },
+  "119": {
+    "en": "Collapse",
+    "fa": "باز کنید"
+  },
+  "120": {
+    "en": "",
+    "fa": ""
+  },
+  "121": {
+    "en": "Edit Functionality",
+    "fa": "ویرایش قابلیت"
+  },
+  "122": {
+    "en": "Functionality Permission",
+    "fa": "Functionality Permission"
+  },
+  "123": {
+    "en": "Edit User",
+    "fa": "ویرایش کاربر"
+  },
+  "124": {
+    "en": "New Password",
+    "fa": "رمز جدید"
+  },
+  "125": {
+    "en": "Current Password",
+    "fa": "رمز فعلی"
+  },
+  "126": {
+    "en": "Change Password",
+    "fa": "تغییر رمز عبور"
+  },
+  "127": {
+    "en": "General Info",
+    "fa": "اطلاعات عمومی"
+  },
+  "128": {
+    "en": "Change Password",
+    "fa": "تغییر رمز عبور"
+  },
+  "129": {
+    "en": "Delete",
+    "fa": "حذف"
+  },
+  "130": {
+    "en": "Item",
+    "fa": "مورد"
+  },
+  "131": {
+    "en": "Organization",
+    "fa": "سازمان"
+  },
+  "132": {
+    "en": "All system organizations are listed in this table.",
+    "fa": "تمامی سازمان های سیستم در این جدول لیست شده اند."
+  },
+  "133": {
+    "en": "Add Organization",
+    "fa": "اضافه کردن سازمان"
+  },
+  "134": {
+    "en": "Edit Organization",
+    "fa": "ویرایش سازمان"
+  },
+  "135": {
+    "en": "Type",
+    "fa": "نوع"
+  },
+  "136": {
+    "en": "Mission",
+    "fa": "ماموریت"
+  },
+  "137": {
+    "en": "lat",
+    "fa": "طول جغرافیایی"
+  },
+  "138": {
+    "en": "long",
+    "fa": "عرض جغرافیایی"
+  },
+  "139": {
+    "en": "Choose Organization Location",
+    "fa": "آدرس شرکت را انتخاب کنید"
+  },
+  "140": {
+    "en": "Open map to select location",
+    "fa": "باز کردن نقشه برای انتخاب آدرس"
+  },
+  "141": {
+    "en": "Remove selected location",
+    "fa": "حذف آدرس انتخاب شده"
+  },
+  "142": {
+    "en": "Organization Role",
+    "fa": "نقش های سازمان"
+  },
+  "143": {
+    "en": "All system Organizations Roles are listed in this table.",
+    "fa": "تمامی نقش های سازمان ها سیستم در این جدول لیست شده اند."
+  },
+  "144": {
+    "en": "Graphics",
+    "fa": "گرافیکی"
+  },
+  "145": {
+    "en": "Graphical interface of relates roles to permission",
+    "fa": "رابط گرافیکی ارتباط نقش به دسترسی"
+  },
+  "146": {
+    "en": "Maps",
+    "fa": "نقشه"
+  },
+  "147": {
+    "en": "Organization User",
+    "fa": "کاربران سازمان"
+  },
+  "148": {
+    "en": "Organization Name",
+    "fa": "نام سازمان"
+  },
+  "149": {
+    "en": "All system Organization User are listed in this table.",
+    "fa": "تمامی کاربران سازمان ها سیستم در این جدول لیست شده اند."
+  },
+  "150": {
+    "en": "Receiving information",
+    "fa": "در حال دریافت اطلاعات"
+  },
+  "151": {
+    "en": "First name",
+    "fa": "نام"
+  },
+  "152": {
+    "en": "Last name",
+    "fa": "نام خانوادگی"
+  },
+  "153": {
+    "en": "Description",
+    "fa": "توضیحات"
+  },
+  "154": {
+    "en": "Graphical interface of relates Organization to Users",
+    "fa": "رابط گرافیکی ارتباط سازمان به کاربران"
+  },
+  "155": {
+    "en": "Graphical interface of relates Organization to Roles",
+    "fa": "رابط گرافیکی ارتباط سازمان به نقش ها"
+  },
+  "156": {
+    "en": "Request is being processed",
+    "fa": "در حال انجام درخواست"
+  },
+  "157": {
+    "en": "Pending",
+    "fa": "در حال انجام درخواست"
+  },
+  "158": {
+    "en": "Done",
+    "fa": "تمام شد"
+  },
+  "159": {
+    "en": "It will be ready soon",
+    "fa": "به زودی آماده خواهد شد"
+  },
+  "160": {
+    "en": "InActive",
+    "fa": "غیرفعال کردن"
+  },
+  "161": {
+    "en": "Active",
+    "fa": "فعال کردن"
+  },
+  "162": {
+    "en": "Apply",
+    "fa": "اعمال"
+  },
+  "163": {
+    "en": "Active All",
+    "fa": "فعال کردن همه"
+  },
+  "164": {
+    "en": "Inactive All",
+    "fa": "غیرفعال کردن همه"
+  },
+  "165": {
+    "en": "Accessibility",
+    "fa": "دسترسی"
+  },
+  "166": {
+    "en": "set default",
+    "fa": "اعمال پیش فرض"
+  },
+  "167": {
+    "en": "catch default",
+    "fa": "گرفتن پیش فرض"
+  },
+  "168": {
+    "en": "Beta Version",
+    "fa": "نسخه آزمایشی"
+  },
+  "169": {
+    "en": "Check Connection",
+    "fa": "بررسی اتصال"
+  },
+  "170": {
+    "en": "Accessible",
+    "fa": "قابل دسترس"
+  },
+  "171": {
+    "en": "Unavailable",
+    "fa": "غیر قابل دسترس"
+  },
+  "172": {
+    "en": "Pending",
+    "fa": "در انتظار"
+  },
+  "173": {
+    "en": "The functionality is Accessible 👍",
+    "fa": "قابلیت قابل دسترسی است 👍"
+  },
+  "174": {
+    "en": "The functionality is Unavailable 😢",
+    "fa": "قابلیت غیر قابل دسترسی است 😢"
+  },
+  "175": {
+    "en": "Text Copied",
+    "fa": "متن کپی شد"
+  },
+  "176": {
+    "en": "Ip",
+    "fa": "آی پی"
+  },
+  "177": {
+    "en": "Result",
+    "fa": "نتیجه"
+  },
+  "178": {
+    "en": "OK",
+    "fa": "تایید"
+  },
+  "179": {
+    "en": "Max image size: 2MB",
+    "fa": "حداکثر حجم عکس: 2 مگابایت"
+  },
+  "180": {
+    "en": "Max image resolution: 2000*2000 px",
+    "fa": "حداکثر ابعاد عکس: 2000*2000 پیکسل"
+  },
+  "181": {
+    "en": "Location",
+    "fa": "مکان"
+  },
+  "182": {
+    "en": "Settings",
+    "fa": "تنظیمات"
+  },
+  "183": {
+    "en": "Organization Management",
+    "fa": "مدیریت سازمان"
+  },
+  "184": {
+    "en": "New",
+    "fa": "جدید"
+  },
+  "185": {
+    "en": "Integrated management system for business services",
+    "fa": "سامانه مدیریت یکپارچه خدمات کسب و کار"
+  },
+  "186": {
+    "en": "Increase balance",
+    "fa": "افزایش موجودی"
+  },
+  "187": {
+    "en": "balance",
+    "fa": "موجودی"
+  },
+  "188": {
+    "en": "The number must be between 1 and 1 billion.",
+    "fa": "این تعداد باید بین 1 تا 1 میلیارد باشد."
+  },
+  "189": {
+    "en": "Wallet HOLDER",
+    "fa": "مالک کیف پول"
+  },
+  "190": {
+    "en": "VALID TILL",
+    "fa": "تاریخ اعتبار"
+  },
+  "191": {
+    "en": "Under construction",
+    "fa": "در حال ساخت"
+  },
+  "192": {
+    "en": "Users Wallet",
+    "fa": "کیف پول کاربران"
+  },
+  "193": {
+    "en": "Wallet Number",
+    "fa": "شماره حساب"
+  },
+  "194": {
+    "en": "Suspend",
+    "fa": "تعلیق"
+  },
+  "195": {
+    "en": "Catch Suspend",
+    "fa": "رفع تعلیق"
+  },
+  "196": {
+    "en": "Price",
+    "fa": "مبلغ"
+  },
+  "197": {
+    "en": "Users Transactions",
+    "fa": "تراکنش‌های کاربران"
+  },
+  "198": {
+    "en": "Gateway",
+    "fa": "درگاه"
+  },
+  "199": {
+    "en": "Tracking Code",
+    "fa": "کد پیگیری"
+  },
+  "200": {
+    "en": "Amount",
+    "fa": "مبلغ"
+  },
+  "201": {
+    "en": "Transaction Date",
+    "fa": "تاریخ تراکنش"
+  },
+  "202": {
+    "en": "Status",
+    "fa": "وضعیت"
+  },
+  "203": {
+    "en": "All system Users Transaction are listed in this table.",
+    "fa": "تمامی تراکنش‌های کاربران ها سیستم در این جدول لیست شده اند."
+  },
+  "204": {
+    "en": "All system Wallet are listed in this table.",
+    "fa": "تمامی کیف پول های سیستم در این جدول لیست شده اند."
+  },
+  "205": {
+    "en": "Transaction",
+    "fa": "تراکنش‌ها"
+  },
+  "206": {
+    "en": "My Transactions",
+    "fa": "تراکنش‌های من"
+  },
+  "207": {
+    "en": "Wallet is suspended",
+    "fa": "کیف پول تعلیق شده است"
+  },
+  "208": {
+    "en": "Search & Select User",
+    "fa": "جستجو و انتخاب کاربر"
+  },
+  "209": {
+    "en": "No option found, Write to search",
+    "fa": "موردی یافت نشد، برای جستجو متنی بنویسید"
+  },
+  "210": {
+    "en": "New Options🎉",
+    "fa": "امکانات جدید🎉"
+  },
+  "211": {
+    "en": "Color Mode",
+    "fa": "حالت شب / روز"
+  },
+  "212": {
+    "en": "Language",
+    "fa": "زبان"
+  },
+  "213": {
+    "en": "Rial",
+    "fa": "ریال"
+  },
+  "214": {
+    "en": "Price Per Request",
+    "fa": "هزینه بر اساس درخواست"
+  },
+  "215": {
+    "en": "Price Per Traffic",
+    "fa": "هزینه بر اساس ترافیک"
+  },
+  "216": {
+    "en": "Mode",
+    "fa": "حالت"
+  },
+  "217": {
+    "en": "Price Per Request Discount",
+    "fa": "تخفیف  روی هزینه بر اساس درخواست"
+  },
+  "218": {
+    "en": "Price Per Traffic Discount",
+    "fa": "تخفیف روی هزینه بر اساس ترافیک"
+  },
+  "219": {
+    "en": "Discount",
+    "fa": "تخفیف"
+  },
+  "220": {
+    "en": "Category",
+    "fa": "دسته بندی"
+  },
+  "221": {
+    "en": "Logo",
+    "fa": "نماد"
+  },
+  "222": {
+    "en": "Category name",
+    "fa": "نام دسته بندی"
+  },
+  "223": {
+    "en": "All system Categories are listed in this table.",
+    "fa": "تمامی دسته بندی های سیستم در این جدول لیست شده اند."
+  },
+  "224": {
+    "en": "Kando Service Management",
+    "fa": "مدیریت سرویس کندو"
+  },
+  "225": {
+    "en": "Service",
+    "fa": "سرویس"
+  },
+  "226": {
+    "en": "Price/Request",
+    "fa": "هزینه\\درخواست"
+  },
+  "227": {
+    "en": "Price/Traffic",
+    "fa": "هزینه\\ترافیک"
+  },
+  "228": {
+    "en": "Category Component Functionality",
+    "fa": "دسته بندی - کامپوننت - قابلیت"
+  },
+  "229": {
+    "en": "All system Categories - Component - Functionalities are listed in this table.",
+    "fa": "تمامی دسته بندی - کامپوننت - قابلیت های سیستم در این جدول لیست شده اند."
+  },
+  "230": {
+    "en": "Functionalities",
+    "fa": "قابلیت ها"
+  },
+  "231": {
+    "en": "Functionality",
+    "fa": "قابلیت"
+  },
+  "232": {
+    "en": "Persian name",
+    "fa": "نام به فارسی"
+  },
+  "233": {
+    "en": "English name",
+    "fa": "نام به انگلیسی"
+  },
+  "234": {
+    "en": "Persian description",
+    "fa": "توضیحات به فارسی"
+  },
+  "235": {
+    "en": "English description",
+    "fa": "توضیحات به انگلیسی"
+  },
+  "236": {
+    "en": "Image for dark mode",
+    "fa": "عکس برای حالت شب"
+  },
+  "237": {
+    "en": "Image for light mode",
+    "fa": "عکس برای حالت روز"
+  },
+  "238": {
+    "en": "Image for light mode",
+    "fa": "عکس برای حالت روز"
+  },
+  "239": {
+    "en": "UI Path",
+    "fa": "آدرس رابط گرافیکی"
+  },
+  "240": {
+    "en": "Cost",
+    "fa": "قیمت"
+  },
+  "241": {
+    "en": "Cost with discount",
+    "fa": "قیمت با تخفیف"
+  },
+  "242": {
+    "en": "If you change the selected category, all Functionalities connected to the service will be disconnected from the service.",
+    "fa": "در صورت ویرایش دسته بندی انتخابی، تمامی قابلیت های متصل به سرویس از حالت اتصال به سرویس خارج می شوند."
+  },
+  "243": {
+    "en": "If you delete the selected category, all Functionalities connected to the service will be disconnected from the service.",
+    "fa": "در صورت حذف دسته بندی انتخابی، تمامی قابلیت های متصل به سرویس از حالت اتصال به سرویس خارج می شوند."
+  },
+  "244": {
+    "en": "Component",
+    "fa": "کامپوننت"
+  },
+  "245": {
+    "en": "All system Component are listed in this table.",
+    "fa": "تمامی کامپوننت های سیستم در این جدول لیست شده اند."
+  },
+  "246": {
+    "en": "Component name",
+    "fa": "نام کامپوننت"
+  },
+  "247": {
+    "en": "Category Functionality",
+    "fa": "دسته بندی - قابلیت"
+  },
+  "248": {
+    "en": "Category Component",
+    "fa": "دسته بندی - کامپوننت"
+  },
+  "249": {
+    "en": "All Functionalities",
+    "fa": "تمام قابلیت ها"
+  },
+  "250": {
+    "en": "All Components",
+    "fa": "تمام کامپوننت ها"
+  },
+  "251": {
+    "en": "Components",
+    "fa": "کامپوننت ها"
+  },
+  "252": {
+    "en": "Functionality Category",
+    "fa": "قابلیت - دسته بندی"
+  },
+  "253": {
+    "en": "Component Category",
+    "fa": "کامپوننت - دسته بندی"
+  },
+  "254": {
+    "en": "Financial ManagementList",
+    "fa": "مدیریت مالی"
+  },
+  "255": {
+    "en": "Gift Card",
+    "fa": "کارت هدیه"
+  },
+  "256": {
+    "en": "Component Functionality",
+    "fa": "کامپوننت - قابلیت"
+  },
+  "257": {
+    "en": "All system Component - Functionalities are listed in this table.",
+    "fa": "تمامی کامپوننت - قابلیت‌های سیستم در این جدول لیست شده اند."
+  },
+  "258": {
+    "en": "Functionalities connected to this component",
+    "fa": "قابلیت‌های متصل به این کامپوننت"
+  },
+  "259": {
+    "en": "If the service type is changed, all items connected to the service will be disconnected from the service.",
+    "fa": "در صورت تغییر نوع سرویس، تمامی موارد متصل به سرویس از حالت اتصال به سرویس خارج می شوند."
+  },
+  "260": {
+    "en": "Add Category",
+    "fa": "اضافه کردن دسته بندی"
+  },
+  "261": {
+    "en": "Edit Category",
+    "fa": "ویرایش دسته بندی"
+  },
+  "262": {
+    "en": "Add Component",
+    "fa": "اضافه کردن کامپوننت"
+  },
+  "263": {
+    "en": "Edit Component",
+    "fa": "ویرایش کامپوننت"
+  },
+  "264": {
+    "en": "Selected Functionalities",
+    "fa": "قابلیت‌های انتخابی"
+  },
+  "265": {
+    "en": "Selected Components",
+    "fa": "کامپوننت های انتخابی"
+  },
+  "266": {
+    "en": "There is no Functionality connected to this component!",
+    "fa": "قابلیت به این کامپوننت متصل نیست!"
+  },
+  "267": {
+    "en": "Functionalities Count",
+    "fa": "تعداد قابلیت‌ها"
+  },
+  "268": {
+    "en": "Components Count",
+    "fa": "تعداد کامپوننت‌ها"
+  },
+  "269": {
+    "en": "Minimum price for sell",
+    "fa": "حداقل قیمت برای فروش"
+  },
+  "270": {
+    "en": "Organization Type",
+    "fa": "نوع سازمان"
+  },
+  "271": {
+    "en": "sss",
+    "fa": "sss"
+  },
+  "272": {
+    "en": "Edit",
+    "fa": "ویرایش"
+  },
+  "273": {
+    "en": "Add as subnode",
+    "fa": "اضافه کردن به عنوان زیر شاخه"
+  },
+  "274": {
+    "en": "Add as sibling",
+    "fa": "اضافه کردن به عنوان خواهر برادر"
+  },
+  "275": {
+    "en": "Zoom In",
+    "fa": "بزرگ نمایی"
+  },
+  "276": {
+    "en": "Zoom Out",
+    "fa": "کوچک نمایی"
+  },
+  "277": {
+    "en": "Fit size",
+    "fa": "Fit size"
+  },
+  "278": {
+    "en": "Background color",
+    "fa": "رنگ پس زمینه"
+  },
+  "279": {
+    "en": "Print",
+    "fa": "پرینت"
+  },
+  "280": {
+    "en": "Information",
+    "fa": "اطلاعات"
+  },
+  "281": {
+    "en": "Selected Node Details",
+    "fa": "جزییات گره انتخابی"
+  },
+  "282": {
+    "en": "Telephone number",
+    "fa": "شماره تلفن"
+  },
+  "283": {
+    "en": "Country Code",
+    "fa": "کد کشور"
+  },
+  "284": {
+    "en": "Phone number",
+    "fa": "شماره تلفن همراه"
+  },
+  "285": {
+    "en": "Profiling",
+    "fa": "پروفایلینگ"
+  },
+  "286": {
+    "en": "Organization Hierarchy",
+    "fa": "سلسله مراتب سازمان"
+  },
+  "287": {
+    "en": "Failed",
+    "fa": "خطایی رخ داده است"
+  },
+  "288": {
+    "en": "Failed",
+    "fa": "خطایی رخ داده است"
+  },
+  "289": {
+    "en": "Application",
+    "fa": "کاربرد"
+  },
+  "290": {
+    "en": "Wait a few moments.",
+    "fa": "چند لحظه صبر کنید"
+  },
+  "291": {
+    "en": "Error",
+    "fa": "خطا"
+  },
+  "292": {
+    "en": "Succeed",
+    "fa": "موفق"
+  },
+  "293": {
+    "en": "Scroll to paginate",
+    "fa": "برای مشاهده صفحات دیگر اسکرول کنید"
+  },
+  "294": {
+    "en": "Add Service",
+    "fa": "اضافه کردن سرویس"
+  },
+  "295": {
+    "en": "Edit Service",
+    "fa": "ویرایش سرویس"
+  },
+  "296": {
+    "en": "English",
+    "fa": "انگلیسی"
+  },
+  "297": {
+    "en": "Persian",
+    "fa": "فارسی"
+  },
+  "298": {
+    "en": "If confirmed, all switches will be disabled.",
+    "fa": "در صورت تایید، تمام سوییچ ها غیرفعال خواهند شد."
+  },
+  "299": {
+    "en": "Accept",
+    "fa": "تایید"
+  },
+  "300": {
+    "en": "If confirmed, all switches will be activated.",
+    "fa": "در صورت تایید، تمام سوییچ ها فعال خواهند شد."
+  },
+  "301": {
+    "en": "Parent Organization",
+    "fa": "سازمان والد"
+  },
+  "302": {
+    "en": "Sign In",
+    "fa": "ورود"
+  },
+  "303": {
+    "en": "to continue to ",
+    "fa": "برای ادامه با "
+  },
+  "304": {
+    "en": "Create Account",
+    "fa": "ساخت حساب کاربری"
+  },
+  "305": {
+    "en": "Sign in with Mikhak",
+    "fa": "با میخک وارد شوید"
+  },
+  "306": {
+    "en": "Help",
+    "fa": "کمک"
+  },
+  "307": {
+    "en": "Privacy",
+    "fa": "حریم خصوصی"
+  },
+  "308": {
+    "en": "Terms",
+    "fa": "شرایط"
+  },
+  "309": {
+    "en": "SSO Management",
+    "fa": "مدیریت SSO"
+  },
+  "310": {
+    "en": "Site",
+    "fa": "سایت"
+  },
+  "311": {
+    "en": "Privacy link",
+    "fa": "لینک حریم خصوصی"
+  },
+  "312": {
+    "en": "Terms of service link",
+    "fa": "لینک شرایط خدمات"
+  },
+  "313": {
+    "en": "Functionality category",
+    "fa": "دسته بندی قابلیت"
+  },
+  "314": {
+    "en": "Link",
+    "fa": "لینک"
+  },
+  "315": {
+    "en": "Add SSO Config",
+    "fa": "اضافه کردن پیکربندی SSO"
+  },
+  "316": {
+    "en": "Add the sites you want to be able to sign in with Mikhak SSO.",
+    "fa": "سایت هایی را که می خواهید بتوانند با SSO میخک وارد سیستم خودشان شوند در این صفحه اضافه کنید."
+  },
+  "317": {
+    "en": "Edit SSO Config",
+    "fa": "ویرایش پیکربندی SSO"
+  },
+  "318": {
+    "en": "Token",
+    "fa": "توکن"
+  },
+  "319": {
+    "en": "Generate Token",
+    "fa": "تولید توکن"
+  },
+  "320": {
+    "en": "You do not have access",
+    "fa": "شما دسترسی ندارید"
+  },
+  "321": {
+    "en": "Service User Organization",
+    "fa": "سرویس - سازمان"
+  },
+  "322": {
+    "en": "All system Service - User - Organization are listed in this table.",
+    "fa": "تمامی سرویس - کاربر - سازمان های سیستم در این جدول لیست شده اند."
+  },
+  "323": {
+    "en": "Service Organization",
+    "fa": "سرویس - سازمان"
+  },
+  "324": {
+    "en": "Service User",
+    "fa": "سرویس - کاربر"
+  },
+  "325": {
+    "en": "Organization Service",
+    "fa": "سازمان - سرویس"
+  },
+  "326": {
+    "en": "User Service",
+    "fa": "کاربر - سرویس"
+  },
+  "327": {
+    "en": "All system Users Services are listed in this table.",
+    "fa": "تمامی کاربران - سرویس های سیستم در این جدول لیست شده اند."
+  },
+  "328": {
+    "en": "Organization Service",
+    "fa": "سازمان - سرویس"
+  },
+  "329": {
+    "en": "All system Organization Services are listed in this table.",
+    "fa": "تمامی سازمان - سرویس های سیستم در این جدول لیست شده اند."
+  },
+  "330": {
+    "en": "Tickets",
+    "fa": "تیکت ها"
+  },
+  "331": {
+    "en": "Open Tickets",
+    "fa": "تیکت های باز"
+  },
+  "332": {
+    "en": "All Closed Tickets",
+    "fa": "تمام تیکت های بسته شده"
+  },
+  "333": {
+    "en": "My Open Tickets ",
+    "fa": "تیکت های باز من"
+  },
+  "334": {
+    "en": "All system tickets are listed in this tables.",
+    "fa": "تمامی تیکت های سیستم در این جدول ها لیست شده اند."
+  },
+  "335": {
+    "en": "No Filter",
+    "fa": "بدون فیلتر"
+  },
+  "336": {
+    "en": "Subject",
+    "fa": "عنوان"
+  },
+  "337": {
+    "en": "Created Time",
+    "fa": "تاریخ ساخت"
+  },
+  "338": {
+    "en": "Closed Time",
+    "fa": "تاریخ بسته شدن"
+  },
+  "340": {
+    "en": "Deposit",
+    "fa": "واریز"
+  },
+  "341": {
+    "en": "Withdraw",
+    "fa": "برداشت"
+  },
+  "342": {
+    "en": "All",
+    "fa": "همه"
+  },
+  "343": {
+    "en": "Transaction type",
+    "fa": "نوع تراکنش"
+  },
+  "344": {
+    "en": "Transaction price",
+    "fa": "مبلغ تراکنش"
+  },
+  "345": {
+    "en": "Final Balance",
+    "fa": "موجودی نهایی"
+  },
+  "346": {
+    "en": "Me",
+    "fa": "من"
+  },
+  "347": {
+    "en": "Chat",
+    "fa": "گفت و گو"
+  },
+  "348": {
+    "en": "Answered",
+    "fa": "پاسخ داده شده"
+  },
+  "349": {
+    "en": "This Chat is closed. It is not possible to send a new message in this Chat.",
+    "fa": "این گفت و گو بسته شده است. امکان ارسال پیام جدید در این گفت و گو وجود ندارد"
+  },
+  "350": {
+    "en": "User Answered",
+    "fa": "کاربر پاسخ داد"
+  },
+  "351": {
+    "en": "Expert Answered",
+    "fa": "کارشناس پاسخ داد"
+  },
+  "352": {
+    "en": "Closed",
+    "fa": "بسته شده"
+  },
+  "353": {
+    "en": "New Ticket",
+    "fa": "تیکت های جدید"
+  },
+  "354": {
+    "en": "Role Functionality",
+    "fa": "نقش - قابلیت"
+  },
+  "355": {
+    "en": "Copied",
+    "fa": "کپی شد"
+  },
+  "356": {
+    "en": "Close Ticket",
+    "fa": "بستن تیکت"
+  },
+  "357": {
+    "en": "If you accept, the ticket will be closed.",
+    "fa": "اگر بپذیرید، تیکت بسته می شود."
+  },
+  "358": {
+    "en": "All Open Tickets",
+    "fa": "تمامی تیکت های باز"
+  },
+  "359": {
+    "en": "My Closed Tickets",
+    "fa": "تیکت های بسته شده من"
+  },
+  "360": {
+    "en": "Select All",
+    "fa": "انتخاب همه"
+  },
+  "361": {
+    "en": "Active Users",
+    "fa": "کابران فعال"
+  },
+  "362": {
+    "en": "Admin Users",
+    "fa": "کابران ادمین"
+  },
+  "363": {
+    "en": "Active Organizations",
+    "fa": "سازمان های فعال"
+  },
+  "364": {
+    "en": "Not Admin",
+    "fa": "غیر ادمین"
+  },
+  "365": {
+    "en": "Day",
+    "fa": "روز"
+  },
+  "366": {
+    "en": "Year",
+    "fa": "سال"
+  },
+  "367": {
+    "en": "Week",
+    "fa": "هفته"
+  },
+  "368": {
+    "en": "Top 10 Users With Max Balance",
+    "fa": "10 کاربر با بیشترین موجودی"
+  },
+  "369": {
+    "en": "Sum Of Users' Wallets",
+    "fa": "مجموع کیف پول کاربران"
+  },
+  "370": {
+    "en": "Active Services",
+    "fa": "سرویس های فعال"
+  },
+  "371": {
+    "en": "Transactions",
+    "fa": "تراکنش"
+  },
+  "372": {
+    "en": "Consumption chart",
+    "fa": "نمودار میزان مصرف"
+  },
+  "373": {
+    "en": "Clusters",
+    "fa": "کلاسترها"
+  },
+  "374": {
+    "en": "All Users",
+    "fa": "تمامی کاربران"
+  },
+  "375": {
+    "en": "All Organizations",
+    "fa": "تمامی سازمان ها"
+  },
+  "376": {
+    "en": "api",
+    "fa": "api"
+  },
+  "377": {
+    "en": "Clear",
+    "fa": "پاک کردن صفحه"
+  },
+  "378": {
+    "en": "Service Functionality",
+    "fa": "قابلیت های سرویس"
+  },
+  "379": {
+    "en": "Role Management",
+    "fa": "مدیریت نقش"
+  },
+  "390": {
+    "en": "Edit User Information",
+    "fa": "ویرایش اطلاعات کاربر"
+  },
+  "391": {
+    "en": "New Password and Confirm of it is not match!",
+    "fa": "پسورد جدید و تایید آن با هم یکسان نیستند"
+  },
+  "392": {
+    "en": "Password must has more than 8 characters",
+    "fa": "پسورد جدید و تایید آن با هم یکسان نیستند"
+  },
+  "393": {
+    "en": "New Password and the current password are same and has not be same!",
+    "fa": "پسورد جدید قدیمی نباید یکسان باشند"
+  },
+  "394": {
+    "en": "OS",
+    "fa": "سیستم عامل"
+  },
+  "395": {
+    "en": "Show",
+    "fa": "نمایش"
+  },
+  "396": {
+    "en": "Sum of used wallet",
+    "fa": "مجموع کیف پول استفاده شده"
+  },
+  "397": {
+    "en": "Sum of charged wallet",
+    "fa": "مجموع شارژ شده کیف پول"
+  },
+  "398": {
+    "en": "Country",
+    "fa": "کشور"
+  },
+  "399": {
+    "en": "Time",
+    "fa": "زمان"
+  },
+  "400": {
+    "en": "Browser",
+    "fa": "مرورگر"
+  },
+  "401": {
+    "en": "Login history",
+    "fa": "تاریخچه ورود"
+  },
+  "402": {
+    "en": "Your login history are listed in this table.",
+    "fa": "تاریخچه ورودهای شما به سیستم در این جدول لیست شده اند."
+  },
+  "403": {
+    "en": "Search & Select Organization",
+    "fa": "جستجو و انتخاب سازمان"
+  },
+  "404": {
+    "en": "Search & Select Service",
+    "fa": "جستجو و انتخاب سرویس"
+  },
+  "405": {
+    "en": "Time frame",
+    "fa": "بازه زمانی"
+  },
+  "406": {
+    "en": "Request base",
+    "fa": "مبتنی بر درخواست"
+  },
+  "407": {
+    "en": "Amount base",
+    "fa": "مبتنی بر مبلغ"
+  },
+  "408": {
+    "en": "Saleable",
+    "fa": "قابل فروش"
+  },
+  "409": {
+    "en": "Requests Count",
+    "fa": "تعداد درخواست"
+  },
+  "410": {
+    "en": "Amounts",
+    "fa": "مبلغ"
+  },
+  "411": {
+    "en": "The organization has not type",
+    "fa": "سازمان انتخاب شده، نوع ندارد!"
+  },
+  "412": {
+    "en": "The organization has not type",
+    "fa": "امکان ثبت این سازمان وجود ندارد."
+  },
+  "413": {
+    "en": "No one",
+    "fa": "هیچ کدام"
+  },
+  "414": {
+    "en": "Daemon",
+    "fa": "روح"
+  },
+  "415": {
+    "en": "Manager name",
+    "fa": "نام مدیر"
+  },
+  "416": {
+    "en": "Creator user",
+    "fa": "کاربر سازنده"
+  },
+  "417": {
+    "en": "Service Request Cart",
+    "fa": "کارتابل درخواست سرویس"
+  },
+  "418": {
+    "en": "Applicant",
+    "fa": "درخواست دهنده"
+  },
+  "419": {
+    "en": "Service search",
+    "fa": "جستجوی سرویس"
+  },
+  "420": {
+    "en": "Step",
+    "fa": "مرحله"
+  },
+  "421": {
+    "en": "Package Creation",
+    "fa": "ساخت پکیج"
+  },
+  "422": {
+    "en": "Release",
+    "fa": "انتشار"
+  },
+  "423": {
+    "en": "Implementation",
+    "fa": "پیاده‌سازی"
+  },
+  "424": {
+    "en": "Monitoring",
+    "fa": "رصد و پشتیبانی"
+  },
+  "425": {
+    "en": "Launched",
+    "fa": "راه‌اندازی شده"
+  },
+  "426": {
+    "en": "No action",
+    "fa": "اقدام نشده"
+  },
+  "427": {
+    "en": "User login history",
+    "fa": "تاریخچه ورود کاربران"
+  },
+  "428": {
+    "en": "User search",
+    "fa": "جستجوی کاربران"
+  },
+  "429": {
+    "en": "Remember me",
+    "fa": "مرا به خاطر بسپار"
+  },
+  "430": {
+    "en": "Platform",
+    "fa": "سامانه"
+  },
+  "431": {
+    "en": "Platform name",
+    "fa": "نام سامانه"
+  },
+  "432": {
+    "en": "Add Platform",
+    "fa": "ثبت سامانه"
+  },
+  "434": {
+    "en": "Edit Platform",
+    "fa": "ویرایش سامانه"
+  },
+  "435": {
+    "en": "Service name",
+    "fa": "نام سرویس"
+  },
+  "436": {
+    "en": "Card display",
+    "fa": "نمایش کارتی"
+  },
+  "437": {
+    "en": "Table display",
+    "fa": "نمایش جدولی"
+  },
+  "438": {
+    "en": "Image",
+    "fa": "تصویر"
+  },
+  "439": {
+    "en": "Connection status",
+    "fa": "وضعیت اتصال"
+  },
+  "440": {
+    "en": "Connected",
+    "fa": "متصل"
+  },
+  "441": {
+    "en": "Not Connected",
+    "fa": "غیر متصل"
+  },
+  "442": {
+    "en": "Edition",
+    "fa": "نوع محصول"
+  },
+  "443": {
+    "en": "Edition name",
+    "fa": "نام نوع محصول"
+  },
+  "444": {
+    "en": "Edit Edition",
+    "fa": "ویرایش نوع محصول"
+  },
+  "445": {
+    "en": "Add Edition",
+    "fa": "ثبت نوع محصول"
+  },
+  "446": {
+    "en": "Select Edition",
+    "fa": "انتخاب نوع محصول"
+  },
+  "447": {
+    "en": "Version",
+    "fa": "نسخه"
+  },
+  "448": {
+    "en": "Maximum number of users",
+    "fa": "حداکثر تعداد کاربران"
+  },
+  "449": {
+    "en": "The number cannot be less than zero",
+    "fa": "عدد نمی تواند از صفر کوچک تر باشد"
+  },
+  "450": {
+    "en": "Select product type",
+    "fa": "نوع محصول را انتخاب کنید"
+  },
+  "451": {
+    "en": "To view organization users, first select the organization",
+    "fa": "برای مشاهده کاربران سازمان، ابتدا سازمان را انتخاب کنید"
+  },
+  "452": {
+    "en": "To enable this item, first enable the service",
+    "fa": "برای فعال کردن این آیتم باید سرویس فعال باشد"
+  },
+  "453": {
+    "en": "Edite Category",
+    "fa": "ویرایش دسته بندی"
+  },
+  "454": {
+    "en": "Add Category",
+    "fa": "ثبت دسته بندی"
+  },
+  "455": {
+    "en": "Select Category",
+    "fa": "انتخاب دسته بندی"
+  },
+  "456": {
+    "en": "ALL METHODS",
+    "fa": "همه متدها"
+  },
+  "457": {
+    "en": "panel",
+    "fa": "پنل"
+  },
+  "458": {
+    "en": "Panel name",
+    "fa": "نام پنل"
+  }
+
+}

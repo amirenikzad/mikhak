@@ -1,0 +1,1 @@
+export const NEW_OPTIONS_VERSION = 'new_options_version';

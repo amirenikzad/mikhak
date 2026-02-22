@@ -1,0 +1,62 @@
+.box_shadow {
+    box-shadow: 0 4px 8px 0 rgba(9, 50, 91, 0.2), 0 6px 20px 0 rgba(9, 50, 91, 0.2);
+}
+
+.page-size-dragable div {
+    border-radius: 30px;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    bottom: 40px;
+}
+
+.page-size-dragable .drag-area {
+    position: fixed;
+    width: calc(100% - 100px);
+    height: 40px;
+    border-radius: 30px;
+}
+
+.full_width {
+    width: 100dvw;
+    width: 100vw;
+}
+
+.full_height {
+    height: 100dvh;
+    height: 100vh;
+}
+
+.min_full_height {
+    min-height: 100dvh;
+    min-height: 100vh;
+}
+
+.bot_width {
+    width: 60dvw;
+    width: 60vw;
+}
+
+.switch-wrapper {
+    position: relative;
+}
+
+.switch-wrapper > div {
+    position: absolute;
+}
+
+.banner-bg {
+    background-size: cover;
+    background-position: center;
+    mask-image: url('/assets/ink_lv2.gif');
+    mask-size: cover;
+    mask-position: center;
+    -webkit-mask-image: url('/assets/ink_lv2.gif');
+    -webkit-mask-size: cover;
+    -webkit-mask-position: center;
+}
+
+.banner {
+    background-color: black;
+    overflow: hidden;
+}

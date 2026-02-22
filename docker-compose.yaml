@@ -1,0 +1,11 @@
+services:
+  front:
+    build:
+      context: .
+#      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.stage
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+     - ./:/app
