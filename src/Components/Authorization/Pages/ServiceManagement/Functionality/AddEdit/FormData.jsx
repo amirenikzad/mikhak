@@ -22,18 +22,21 @@ export const FormData = ({
                            buttonId,
                          }) => {
   const accessSlice = useSelector(state => state.accessSlice);
-  const [searchedSelectServiceValue, setSearchedSelectServiceValue] = useState(apiForm.name.value || '');
+  // const [searchedSelectServiceValue, setSearchedSelectServiceValue] = useState(apiForm.name.value || '');
+  const [categorySearch, setCategorySearch] = useState('');
   const [servicesOptions, setServicesOptions] = useState([]);
   const selectServicesController = new AbortController();
   const { colorMode } = useColorMode(); 
   const observer = useRef(null);
   const [currentPicKey, setCurrentPicKey] = useState(colorMode === 'light' ? 'light_icon' : 'dark_icon');
+  const [userTyped, setUserTyped] = useState(false);
 
   const allServices = async ({ pageParam = 1 }) => {
     if (accessSlice.isAdmin || accessSlice.userAccess?.includes(GET_ALL_SERVICES)) {
       try {
         const response = await fetchWithAxios.get(
-          `/category/all?page=${pageParam}&page_size=20&search=${searchedSelectServiceValue}`,
+          // `/category/all?page=${pageParam}&page_size=20&search=${searchedSelectServiceValue}`,
+          `/category/all?page=${pageParam}&page_size=20&search=${categorySearch}`,
           {
             signal: selectServicesController.signal,
           },
@@ -57,11 +60,15 @@ export const FormData = ({
     isFetchingNextPage: isFetchingServices,
     isRefetching: serviceIsRefetching,
   } = useInfiniteQuery({
-    queryKey: ['all_services_list', searchedSelectServiceValue],
+    // queryKey: ['all_services_list', searchedSelectServiceValue],
+    queryKey: ['all_services_list', categorySearch],
     queryFn: allServices,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage?.next_page,
+    enabled: userTyped,
   });
+
+  // console.log('servicesData2',servicesData);
 
   const lastElementServicesRef = useCallback((node) => {
     if (servicesIsLoading) return;
@@ -81,7 +88,15 @@ export const FormData = ({
     if (servicesData) {
       setServicesOptions(servicesData?.pages.flatMap((page) => page?.services));
     }
+    // console.log('servicesData',servicesData);
   }, [servicesData]);
+
+  useEffect(() => {
+    if (apiForm.category_name?.value) {
+      setCategorySearch(apiForm.category_name.value);
+    }
+    // console.log('apiForm2',apiForm);
+  }, [apiForm.category_name?.value]);
 
   return (
     <Stack spacing={2}>
@@ -191,25 +206,41 @@ export const FormData = ({
                                                           picKey={''}
                                                           InputLeftElementIcon={<ChevronDownOutlineIcon width="1rem" />}
                                                           the_icon={apiForm.project_light_icon?.value}
+                                                          // onClear={() => {
+                                                          //   setSearchedSelectServiceValue(''); 
+                                                          //   setApiForm(prev => ({
+                                                          //       ...prev,
+                                                          //       project_id: { value: '', isInvalid: false },
+                                                          //       category_name: { value: '', isInvalid: false },
+                                                          //     }));
+                                                          // }}
                                                           onClear={() => {
-                                                            setSearchedSelectServiceValue(''); 
-                                                            setApiForm(prev => ({
-                                                                ...prev,
-                                                                project_id: { value: '', isInvalid: false },
-                                                                category_name: { value: '', isInvalid: false },
-                                                              }));
-                                                          }}
-
-                                                          value={apiForm.category_name?.value || ''}
-                                                          onChange={event => {
-                                                            selectServicesController.abort();
-                                                            
-                                                            setCurrentPicKey(colorMode === 'light' ? 'light_icon' : 'dark_icon');
-                                                          }}
-                                                          onKeyDown={event => {
+                                                            setCategorySearch('');
+                                                            setUserTyped(true);
                                                             setApiForm(prev => ({
                                                               ...prev,
-                                                              project_id: { value: '', isInvalid: false },
+                                                              category_id: { value: '', isInvalid: false },
+                                                              category_name: { value: '', isInvalid: false },
+                                                            }));
+                                                          }}
+
+                                                          // value={apiForm.category_name?.value || ''}
+                                                          value={categorySearch}
+                                                          // onChange={event => {
+                                                          //   selectServicesController.abort();
+                                                            
+                                                          //   setCurrentPicKey(colorMode === 'light' ? 'light_icon' : 'dark_icon');
+                                                          // }}
+                                                          onChange={(e) => {
+                                                            const val = e?.target?.value ?? e;
+                                                            setCategorySearch(val);
+                                                            setUserTyped(true);
+                                                          }}
+                                                          onKeyDown={event => {
+                                                            setUserTyped(true);
+                                                            setApiForm(prev => ({
+                                                              ...prev,
+                                                              category_name: { value: '', isInvalid: false },
                                                             }));
                                                             if (event.key === 'Backspace') {
                                                               selectServicesController.abort();
@@ -218,16 +249,25 @@ export const FormData = ({
                                                               
                                                             }
                                                           }}
-                                                          onSelectMethod={value => {
-                                                            selectServicesController.abort();
+                                                          // onSelectMethod={value => {
+                                                          //   selectServicesController.abort();
+                                                          //   setApiForm(prev => ({
+                                                          //     ...prev,
+                                                              
+                                                          //     project_id: { value: String(value.id), isInvalid: false },
+                                                          //     category_name: { value: value.category_name, isInvalid: false, },
+                                                          //   }));
+                                                            
+                                                          //   setCurrentPicKey(colorMode === 'light' ? 'light_icon' : 'dark_icon');
+                                                          // }}
+                                                          onSelectMethod={(value) => {
+                                                            setUserTyped(true);
                                                             setApiForm(prev => ({
                                                               ...prev,
-                                                              
-                                                              project_id: { value: String(value.id), isInvalid: false },
-                                                              category_name: { value: value.category_name, isInvalid: false, },
+                                                              category_id: { value: String(value.id), isInvalid: false },
+                                                              category_name: { value: value.category_name, isInvalid: false },
                                                             }));
-                                                            
-                                                            setCurrentPicKey(colorMode === 'light' ? 'light_icon' : 'dark_icon');
+                                                            setCategorySearch(value.category_name);
                                                           }}
                                                         />
 

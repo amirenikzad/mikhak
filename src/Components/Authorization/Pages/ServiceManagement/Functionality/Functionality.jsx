@@ -104,6 +104,7 @@ export default function Functionality() {
         rawMethod = rawMethod[0]; 
       }
       const method = String(rawMethod).replace(/['"]/g, '');
+      console.log('props.functionalityForm',props);
 
       fetchWithAxios.put(`/functionality`,
         {

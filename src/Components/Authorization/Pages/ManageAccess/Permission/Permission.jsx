@@ -51,6 +51,9 @@ export default function Permission() {
 
   const [totalCountLabel, setTotalCountLabel] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
   const [methodBtn, setMethodBtn] = useState(null);
   const [isDefaultBtn, setIsDefaultBtn] = useState(null);
 
@@ -169,6 +172,9 @@ export default function Permission() {
     removeAxios,
     lastElementRef,
     controller,
+
+    fetchNextPage,
+    hasNextPage,
   } = prouseTableBaseActions({
     getAllURL: '/permission/all',
     onShiftN: onShiftN,
@@ -181,13 +187,22 @@ export default function Permission() {
     responseKey: 'permissions',
     searchValue: searchValue,
     reactQueryItemName: reactQueryItemName,
+
+    pageSize,
+
     additionalParams: useMemo(() => {
       const params = {};
       if (methodBtn !== null) params.method = methodBtn;
       if (isDefaultBtn !== null) params.default = isDefaultBtn;
+
+      params.page = currentPage;  
+      params.page_size = pageSize;
+
       return params;
-    }, [methodBtn, isDefaultBtn]),
-  });
+    // }, [methodBtn, isDefaultBtn]),
+    }, [methodBtn, isDefaultBtn, currentPage, pageSize]),
+
+    });
 
   useEffect(() => {
     setTotalCountLabel(totalCount ?? 0);
@@ -333,6 +348,35 @@ export default function Permission() {
     );
   };
 
+  // useEffect(() => {
+  //   setCurrentPage(1);
+  // }, [searchValue]);
+
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  // useEffect(() => {
+  //   if (currentPage > totalPages) {
+  //     setCurrentPage(totalPages);
+  //   }
+  // }, [currentPage, totalPages]);
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
 
 
 
@@ -418,8 +462,17 @@ export default function Permission() {
                    hasCheckboxAccess={hasAccessCheckbox}
                    isAllCheckedCheckbox={isAllChecked}
                    isSomeCheckedCheckbox={isAnyChecked}
-                   lastElementRef={lastElementRef}
+                  //  lastElementRef={lastElementRef}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+                   currentPage={currentPage}
+                   totalPages={totalPages}
+                   onNextPage={onNextPage}
+                   onPreviousPage={onPreviousPage}
+                   showPageNavigator={true}
+
+                   hasPagination={false}
+                  lastElementRef={undefined}
+
                    body={sortedListValue?.map((row) => (
                      <PermissionTable key={row?.id}
                                       ids={ids}

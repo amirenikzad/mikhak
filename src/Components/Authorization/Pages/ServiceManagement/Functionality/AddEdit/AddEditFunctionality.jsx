@@ -30,13 +30,15 @@ export default function AddEditFunctionality({
     name: { value: editing ? formField?.name : '', isInvalid: false },
     description: { value: editing ? formField?.description : '', isInvalid: false },
     price: { value: editing ? formField?.price : 0, isInvalid: false },
-    project_id: { value: editing ? String(formField?.project_id) : 0, isInvalid: false },
-    project_name: { value: editing ? formField?.project_name : '', isInvalid: false },
+    project_id: { value: editing ? String(formField?.id) : 0, isInvalid: false },
+    category_name: { value: editing ? formField?.category_name : '', isInvalid: false },
     api: { value: editing ? formField?.api : '', isInvalid: false },
     method: { value: editing ? formField?.method : '', isInvalid: false },
     project_light_icon: { value: editing ? formField?.project_light_icon : '', isInvalid: false },
     project_dark_icon: { value: editing ? formField?.project_dark_icon : '', isInvalid: false },
   });
+  // console.log("functionalityForm end",functionalityForm);
+  // console.log("formField end",formField);
   const methodOptions = createListCollection({
     items: [
       { value: 'post', label: 'POST' },

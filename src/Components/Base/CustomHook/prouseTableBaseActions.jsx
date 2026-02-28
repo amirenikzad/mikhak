@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { giveText } from '../MultiLanguages/HandleLanguage.jsx';
 import { setIsDeleting } from '../../../store/features/isLoadingSlice.jsx';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData } from '@tanstack/react-query';
 import qs from 'qs';
 
 export const prouseTableBaseActions = ({
@@ -113,56 +115,150 @@ export const prouseTableBaseActions = ({
     }, [additionalParams]);
 
 
-  const allTableListAxios = async ({ pageParam = 1 }) => {
-    if (loadWhenIsTrue) {
-      try {
-        const response = await fetchWithAxios.get(
-        //   `${getAllURL}?page=${pageParam}&page_size=${pageSize}${hasSearch ? `&search=${searchValue}` : ''}${queryParameter}`,
-        `${getAllURL}?page=${pageParam}&page_size=${pageSize}${
-            hasSearch ? `&search=${searchValue}` : ''
-            }${queryParameter}${additionalQueryString}`,
-          {
-            signal: controller.signal,
-          }
-        );
+  // const allTableListAxios = async ({ pageParam = 1 }) => {
+  //   if (loadWhenIsTrue) {
+  //     try {
+  //       const response = await fetchWithAxios.get(
+  //       //   `${getAllURL}?page=${pageParam}&page_size=${pageSize}${hasSearch ? `&search=${searchValue}` : ''}${queryParameter}`,
+  //       `${getAllURL}?page=${pageParam}&page_size=${pageSize}${
+  //           hasSearch ? `&search=${searchValue}` : ''
+  //           }${queryParameter}${additionalQueryString}`,
+  //         {
+  //           signal: controller.signal,
+  //         }
+  //       );
 
-        return {
-          [responseKey]: response.data[responseKey],
-          next_page: response.data.next_page,
-          total_count: response.data.total_count,
-        };
-      } catch (error) {
-        throw error;
-      }
-    } else {
-      return [];
-    }
+  //       return {
+  //         [responseKey]: response.data[responseKey],
+  //         next_page: response.data.next_page,
+  //         total_count: response.data.total_count,
+  //       };
+  //     } catch (error) {
+  //       throw error;
+  //     }
+  //   } else {
+  //     return [];
+  //   }
+  // };
+
+  const allTableListAxios = async () => {
+    if (!loadWhenIsTrue) return { [responseKey]: [], total_count: 0 };
+
+    const page = additionalParams?.page ?? 1;
+    const size = additionalParams?.page_size ?? pageSize;
+
+    // بقیه پارامترها (غیر از page/page_size) توی additionalParams می‌مونه
+    const { page: _p, page_size: _ps, ...rest } = additionalParams || {};
+
+    const extraQuery = qs.stringify(rest, { skipNulls: true });
+    const extraQueryString = extraQuery ? `&${extraQuery}` : '';
+
+    const response = await fetchWithAxios.get(
+      `${getAllURL}?page=${page}&page_size=${size}${hasSearch ? `&search=${searchValue}` : ''}${queryParameter}${extraQueryString}`,
+      { signal: controller.signal }
+    );
+
+    return {
+      [responseKey]: response.data[responseKey],
+      total_count: response.data.total_count,
+    };
   };
 
+  // const queryDeps = useMemo(() => {
+  //   return [loadWhenIsTrue, useQueryDependsUpdate, searchValue, queryParameter, additionalParams];
+  //   }, [useQueryDependsUpdate, searchValue, queryParameter, loadWhenIsTrue, additionalParams]);
+
+
+
+  // const {
+  //   data,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isLoading,
+  //   isFetchingNextPage: isFetching,
+  //   isRefetching,
+  //   isError: error,
+  // } = useInfiniteQuery({
+  //   // queryKey: [reactQueryItemName, ...queryDeps],
+  //   queryKey: [reactQueryItemName, ...queryDeps, additionalParams],
+  //   queryFn: allTableListAxios,
+  //   initialPageParam: 1,
+  //   getNextPageParam: (lastPage) => lastPage?.next_page,
+  //   refetchInterval: requestEveryMinute ? requestEveryMinute * 60 * 1000 : false,
+  // });
   const queryDeps = useMemo(() => {
     return [loadWhenIsTrue, useQueryDependsUpdate, searchValue, queryParameter, additionalParams];
-    }, [useQueryDependsUpdate, searchValue, queryParameter, loadWhenIsTrue, additionalParams]);
+  }, [useQueryDependsUpdate, searchValue, queryParameter, loadWhenIsTrue, additionalParams]);
 
+  // const {
+  //   data,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isLoading,
+  //   isFetchingNextPage: isFetching,
+  //   isRefetching,
+  //   isError: error,
+  // } = useInfiniteQuery({
+  //   queryKey: [reactQueryItemName, ...queryDeps],
+  //   queryFn: async ({ pageParam = 1 }) => {
+  //     // allTableListAxios باید pageParam بگیره
+  //     const size = additionalParams?.page_size ?? pageSize;
 
+  //     const { page: _p, page_size: _ps, ...rest } = additionalParams || {};
+  //     const extraQuery = qs.stringify(rest, { skipNulls: true });
+  //     const extraQueryString = extraQuery ? `&${extraQuery}` : '';
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isFetchingNextPage: isFetching,
-    isRefetching,
-    isError: error,
-  } = useInfiniteQuery({
-    // queryKey: [reactQueryItemName, ...queryDeps],
-    queryKey: [reactQueryItemName, ...queryDeps, additionalParams],
-    queryFn: allTableListAxios,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage?.next_page,
-    refetchInterval: requestEveryMinute ? requestEveryMinute * 60 * 1000 : false,
-  });
+  //     const response = await fetchWithAxios.get(
+  //       `${getAllURL}?page=${pageParam}&page_size=${size}${hasSearch ? `&search=${searchValue}` : ''}${queryParameter}${extraQueryString}`,
+  //       { signal: controller.signal }
+  //     );
 
-  const totalCount = data?.pages?.[0]?.total_count ?? null;
+  //     return {
+  //       [responseKey]: response.data[responseKey],
+  //       next_page: response.data.next_page,
+  //       total_count: response.data.total_count,
+  //     };
+  //   },
+  //   initialPageParam: 1,
+  //   getNextPageParam: (lastPage) => lastPage?.next_page,
+  //   refetchInterval: requestEveryMinute ? requestEveryMinute * 60 * 1000 : false,
+  //   enabled: loadWhenIsTrue,
+  // });
+
+  const page = additionalParams?.page ?? 1;
+const size = additionalParams?.page_size ?? pageSize;
+
+const { page: _p, page_size: _ps, ...rest } = additionalParams || {};
+const extraQuery = qs.stringify(rest, { skipNulls: true });
+const extraQueryString = extraQuery ? `&${extraQuery}` : '';
+
+const {
+  data,
+  isLoading,
+  isFetching,
+  isRefetching,
+  isError: error,
+} = useQuery({
+  queryKey: [reactQueryItemName, loadWhenIsTrue, useQueryDependsUpdate, searchValue, queryParameter, page, size, extraQueryString],
+  queryFn: async () => {
+    const response = await fetchWithAxios.get(
+      `${getAllURL}?page=${page}&page_size=${size}${hasSearch ? `&search=${searchValue}` : ''}${queryParameter}${extraQueryString}`,
+      { signal: controller.signal }
+    );
+
+    return {
+      [responseKey]: response.data[responseKey],
+      total_count: response.data.total_count,
+    };
+  },
+  enabled: loadWhenIsTrue,
+  // keepPreviousData: true,
+  placeholderData: keepPreviousData,
+  refetchInterval: requestEveryMinute ? requestEveryMinute * 60 * 1000 : false,
+});
+
+  // const totalCount = data?.pages?.[0]?.total_count ?? null;
+  const totalCount = data?.total_count ?? null;
 
   const handleScroll = () => {
     if (!reverseScroll) return;
@@ -175,29 +271,30 @@ export const prouseTableBaseActions = ({
     }
   };
 
-  useEffect(() => {
-    if (reverseScroll && chatContainerRef && chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
-  }, [data?.pages[0]]);
+  // useEffect(() => {
+  //   if (reverseScroll && chatContainerRef && chatContainerRef.current) {
+  //     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  //   }
+  // }, [data?.pages[0]]);
 
-  const lastElementRef = useCallback((node) => {
-    if (!node || isLoading) return;
+  // const lastElementRef = useCallback((node) => {
+  //   if (!node || isLoading) return;
 
-    if (!observer.current) {
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasNextPage && !isFetching && !isRefetching) {
-          fetchNextPage().then(() => null);
-        }
-      }, {
-        rootMargin: '200px', // Optional: start loading a bit before it hits top
-      });
-    }
+  //   if (!observer.current) {
+  //     observer.current = new IntersectionObserver((entries) => {
+  //       if (entries[0].isIntersecting && hasNextPage && !isFetching && !isRefetching) {
+  //         fetchNextPage().then(() => null);
+  //       }
+  //     }, {
+  //       rootMargin: '200px', // Optional: start loading a bit before it hits top
+  //     });
+  //   }
 
-    observer.current.observe(node);
-  }, [fetchNextPage, hasNextPage, isFetching, isLoading, isRefetching]);
+  //   observer.current.observe(node);
+  // }, [fetchNextPage, hasNextPage, isFetching, isLoading, isRefetching]);
 
-  const listValue = useMemo(() => data?.pages.flatMap((page) => page?.[responseKey]) || [], [data?.pages, responseKey]);
+  // const listValue = useMemo(() => data?.pages.flatMap((page) => page?.[responseKey]) || [], [data?.pages, responseKey]);
+  const listValue = useMemo(() => data?.[responseKey] || [], [data, responseKey]);
 
   const removeAxios = (props) => {
     if (hasAccessToRemove && (!accessSlice.isAdmin && !accessSlice.userAccess?.includes(`${removeURL}_delete`))) {
@@ -238,8 +335,15 @@ export const prouseTableBaseActions = ({
     error,
     headCells,
     removeAxios,
-    lastElementRef,
+    // lastElementRef,
     handleScroll,
     controller,
+
+    // fetchNextPage,
+    // hasNextPage,
+    // isLoading,
+    fetchNextPage: undefined,
+    hasNextPage: false,
+    lastElementRef: undefined,
   };
 };
