@@ -8,6 +8,7 @@ import {
 } from '../../../../Base/UserAccessNames.jsx';
 import { CheckBoxName, ChevronTableName } from '../../../../Base/TableAttributes.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { useCheckboxTable } from '../../../../Base/CustomHook/useCheckboxTable.jsx';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
@@ -39,6 +40,8 @@ export default function RolePermission() {
   const reactQueryItemName = useMemo(() => 'get_role_permission_list', []);
 
   const [totalCountLabel, setTotalCountLabel] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   const [selectedRoleFilter, setSelectedRoleFilter] = useState({
     id: '',
@@ -122,7 +125,7 @@ export default function RolePermission() {
     lastElementRef,
     removeAxios,
     controller,
-  } = useTableBaseActions({
+  } = prouseTableBaseActions({
     getAllURL: '/role_permission/all',
     update: updated,
     checkAccess: hasAccess,
@@ -135,8 +138,19 @@ export default function RolePermission() {
     removeIdRequest: 'role_ids',
     reactQueryItemName: reactQueryItemName,
 
+    pageSize,
+    additionalParams: useMemo(() => ({
+      page: currentPage,
+      page_size: pageSize,
+    }), [currentPage, pageSize]),
+
     queryParameter,
   });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchValue]);
+
 
   useEffect(() => {
     setTotalCountLabel(totalCount ?? 0);
@@ -165,6 +179,27 @@ export default function RolePermission() {
   const sortedListValue = useMemo(() => {
     return stableSort(rolePermissionList, getComparator(order, orderBy));
   }, [order, orderBy, stableSort, rolePermissionList]);
+
+    const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return;
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
 
   const onOpenRolePermission = useCallback((e) => {
     if (!e.open) updated();
@@ -305,7 +340,13 @@ export default function RolePermission() {
                    hasCheckboxAccess={hasAccessCheckbox}
                    isAllCheckedCheckbox={isAllChecked}
                    isSomeCheckedCheckbox={isAnyChecked}
-                   lastElementRef={lastElementRef}
+                   currentPage={currentPage}
+                   totalPages={totalPages}
+                   onNextPage={onNextPage}
+                   onPreviousPage={onPreviousPage}
+                   showPageNavigator={true}
+                   hasPagination={false}
+                   lastElementRef={undefined}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
                    body={sortedListValue?.map((row, index) => (
                      <RolePermissionTable key={row?.role_id}

@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import { GET_ALL_USER } from '../../../../Base/UserAccessNames.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { fetchWithAxios } from '../../../../Base/axios/FetchAxios.jsx';
 import { commaForEvery3Digit } from '../../../../Base/BaseFunction.jsx';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';

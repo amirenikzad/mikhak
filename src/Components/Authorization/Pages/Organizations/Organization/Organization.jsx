@@ -11,6 +11,7 @@ import {
 import { CheckBoxName } from '../../../../Base/TableAttributes.jsx';
 import { useCheckboxTable } from '../../../../Base/CustomHook/useCheckboxTable.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { setHasExpandedMapTrue } from '../../../../../store/features/mapOrganizationSlice.jsx';
 import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
 import { BaseHeaderPage } from '../../BaseHeaderPage.jsx';

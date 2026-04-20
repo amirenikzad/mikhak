@@ -1,6 +1,6 @@
 import { createIcon } from '@chakra-ui/react';
 
-export const checkIcon = createIcon({
+export const CheckIcon = createIcon({
   displayName: 'ChevronRightOutlineIcon',
   viewBox: '0 0 24 24',
   path: (

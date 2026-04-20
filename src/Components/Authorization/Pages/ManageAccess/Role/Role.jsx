@@ -6,6 +6,7 @@ import { DELETE_ROLE, POST_ROLE, PUT_ROLE } from '../../../../Base/UserAccessNam
 import { CheckBoxName } from '../../../../Base/TableAttributes.jsx';
 import { useCheckboxTable } from '../../../../Base/CustomHook/useCheckboxTable.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
 import { BaseHeaderPage } from '../../BaseHeaderPage.jsx';
 import { ActionBarTables } from '../../../../Base/ActionBar/ActionBarTables.jsx';
@@ -32,6 +33,8 @@ export default function Role() {
   const removeId = useMemo(() => 'id', []);
 
   const [totalCountLabel, setTotalCountLabel] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
@@ -87,7 +90,7 @@ export default function Role() {
     removeAxios,
     lastElementRef,
     controller,
-  } = useTableBaseActions({
+  } = prouseTableBaseActions({
     getAllURL: '/role/all',
     onShiftN: onShiftN,
     checkAccess: checkAccessTable,
@@ -99,7 +102,17 @@ export default function Role() {
     responseKey: 'roles',
     searchValue: searchValue,
     reactQueryItemName: reactQueryItemName,
+    pageSize,
+    additionalParams: useMemo(() => ({
+      page: currentPage,
+      page_size: pageSize,
+    }), [currentPage, pageSize]),
   });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchValue]);
+
 
   useEffect(() => {
     setTotalCountLabel(totalCount ?? 0);
@@ -123,6 +136,26 @@ export default function Role() {
   const sortedListValue = useMemo(() => {
     return stableSort(rolesList, getComparator(order, orderBy));
   }, [order, orderBy, stableSort, rolesList]);
+
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return;
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
   const onOpenAdd = useCallback(() => setIsOpenAddRole(true), []);
   const onOpenEditRole = useCallback((e) => setIsOpenEditRole(e.open), []);
@@ -163,8 +196,16 @@ export default function Role() {
                    hasCheckboxAccess={hasAccessCheckbox}
                    isAllCheckedCheckbox={isAllChecked}
                    isSomeCheckedCheckbox={isAnyChecked}
-                   lastElementRef={lastElementRef}
+                  //  lastElementRef={lastElementRef}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+                   currentPage={currentPage}
+                   totalPages={totalPages}
+                   onNextPage={onNextPage}
+                   onPreviousPage={onPreviousPage}
+                   showPageNavigator={true}
+                   hasPagination={false}
+                   lastElementRef={undefined}
+
                    body={sortedListValue?.map((row) => (
                      <RoleTable key={row?.id}
                                 ids={ids}

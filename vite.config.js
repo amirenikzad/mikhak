@@ -134,7 +134,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/auth/prox/apis/': {
-        target: 'http://192.168.17.23:8000',
+        // target: 'http://192.168.17.23:8000',
+        // target: 'http://172.24.24.1:8000',
+        target: 'http://192.168.13.72:32333/',
         secure: false,
         changeOrigin: true,
         rewrite(path) {
@@ -142,7 +144,9 @@ export default defineConfig({
         },
       },
       '/mikhak/': {
-        target: 'http://192.168.13.49:9000/mikhak',
+        // target: 'http://192.168.13.49:9000/mikhak',
+        // target: 'http://172.24.24.1:8000/mikhak',
+        target: 'http://192.168.13.72:32333/mikhak/api/',
         secure: false,
         changeOrigin: true,
         rewrite(path) {

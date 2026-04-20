@@ -11,6 +11,7 @@ import {
 } from '../../../../Base/UserAccessNames.jsx';
 import { ChevronTableName } from '../../../../Base/TableAttributes.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
 import { BaseHeaderPage } from '../../BaseHeaderPage.jsx';

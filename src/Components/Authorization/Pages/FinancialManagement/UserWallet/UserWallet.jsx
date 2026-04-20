@@ -6,6 +6,7 @@ import { PUT_AMOUNT, PUT_SUSPEND } from '../../../../Base/UserAccessNames.jsx';
 import { CheckBoxName } from '../../../../Base/TableAttributes.jsx';
 import { useCheckboxTable } from '../../../../Base/CustomHook/useCheckboxTable.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import {
   showToast,
   promiseToast,

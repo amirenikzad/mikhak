@@ -3,6 +3,7 @@ import { giveText } from '../../../../Base/MultiLanguages/HandleLanguage.jsx';
 import { commaForEvery3Digit } from '../../../../Base/BaseFunction.jsx';
 import { Text, Center, Box } from '@chakra-ui/react';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { BaseTablePage } from '../../BaseTablePage.jsx';
 import { TableText, User } from '../../../../Base/Extensions.jsx';
 import { CircularCheckIcon } from '../../../../Base/CustomIcons/CircularCheckIcon.jsx';

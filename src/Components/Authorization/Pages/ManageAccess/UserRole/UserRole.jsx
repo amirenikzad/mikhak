@@ -10,6 +10,7 @@ import {
 } from '../../../../Base/UserAccessNames.jsx';
 import { CheckBoxName, ChevronTableName } from '../../../../Base/TableAttributes.jsx';
 import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
+import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { useCheckboxTable } from '../../../../Base/CustomHook/useCheckboxTable.jsx';
 import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
@@ -38,6 +39,9 @@ export default function UserRole() {
   const queryClient = useQueryClient();
   const reactQueryItemName = useMemo(() => 'get_users_roles_list', []);
   const [totalCountLabel, setTotalCountLabel] = useState(0);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   const [selectedUserFilter, setSelectedUserFilter] = useState({
     id: '',
@@ -263,7 +267,7 @@ export default function UserRole() {
     removeAxios,
     lastElementRef,
     controller,
-  } = useTableBaseActions({
+  } = prouseTableBaseActions({
     getAllURL: '/user_role/all',
     update: updated,
     onShiftA: onShiftN,
@@ -276,8 +280,19 @@ export default function UserRole() {
     removeIdRequest: 'user_ids',
     reactQueryItemName: reactQueryItemName,
 
+    pageSize,
+    additionalParams: useMemo(() => ({
+      page: currentPage,
+      page_size: pageSize,
+    }), [currentPage, pageSize]),
+
     queryParameter,
   });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchValue, selectedUserFilter.id, selectedRoleFilter.id]);
+
 
   useEffect(() => {
     setTotalCountLabel(totalCount ?? 0);
@@ -306,6 +321,27 @@ export default function UserRole() {
   const sortedListValue = useMemo(() => {
     return stableSort(userRoleList, getComparator(order, orderBy));
   }, [order, orderBy, stableSort, userRoleList]);
+
+    const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return;
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
 
   const onOpenAdd = useCallback(() => setIsOpenAdvanced(true), []);
   const onOpenRemoveModal = useCallback((e) => {
@@ -359,7 +395,13 @@ export default function UserRole() {
                    hasCheckboxAccess={hasAccessCheckbox}
                    isAllCheckedCheckbox={isAllChecked}
                    isSomeCheckedCheckbox={isAnyChecked}
-                   lastElementRef={lastElementRef}
+                   currentPage={currentPage}
+                   totalPages={totalPages}
+                   onNextPage={onNextPage}
+                   onPreviousPage={onPreviousPage}
+                   showPageNavigator={true}
+                   hasPagination={false}
+                   lastElementRef={undefined} 
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
                    body={sortedListValue?.map((row, index) => (
                      <UserRoleTable key={row.user_id}
