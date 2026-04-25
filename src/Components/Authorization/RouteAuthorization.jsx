@@ -21,7 +21,8 @@ import {
   DEVOPS_ROUTE,
   USER_INFO_ROUTE,
   CATEGORY_ROUTE,
-  EDITION_ROUTE
+  EDITION_ROUTE,
+  TREE_ROUTE
 } from '../Base/BaseRouts';
 import { Box, Flex } from '@chakra-ui/react';
 import { SideMenu } from '../Base/SideMenu/SideMenu.jsx';
@@ -49,6 +50,7 @@ const OrganizationSection = lazy(() => import('./Pages/BaseAccessSections/Organi
 const PermissionSection = lazy(() => import('./Pages/BaseAccessSections/ManageAccess/PermissionSection'));
 const FunctionalitySection = lazy(() => import('./Pages/BaseAccessSections/ServiceManagement/FunctionalitySection.jsx'));
 const TicketSection = lazy(() => import('./Pages/BaseAccessSections/ServiceManagement/TicketSection'));
+const TreeSection = lazy(() => import('./Pages/BaseAccessSections/ServiceManagement/TreeSection.jsx'));
 
 const Devops= lazy(() => import('./Pages/Devops/Devops.jsx'));
 const UserInfoSection = lazy(() => import('./Pages/BaseAccessSections/UserManagement/UserInfoSection.jsx'));
@@ -99,6 +101,7 @@ export default function RouteAuthorization() {
             <Route path={FUNCTIONALITY_ROUTE} element={<FunctionalitySection />} />
             <Route path={SERVICE_ROUTE} element={<ServiceSection />} />
             <Route path={SERVICE_USER_ORGANIZATION_ROUTE} element={<ServiceUserOrganizationSection />} />
+            <Route path={TREE_ROUTE} element={<TreeSection />} />
 
             <Route path={ORGANIZATION_ROUTE} element={<OrganizationSection />} />
             <Route path={ORGANIZATION_USER_ROUTE} element={<OrganizationUserSection />} />

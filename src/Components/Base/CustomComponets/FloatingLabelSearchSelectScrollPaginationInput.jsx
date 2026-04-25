@@ -57,7 +57,7 @@ const FloatingLabelSearchSelectScrollPaginationInput = memo(function FloatingLab
   const handleBlur = () => {
     setTimeout(() => {
       setIsFocused(false);
-      setDropdownOpen(false);
+      // setDropdownOpen(false);
     }, 200);
   };
 

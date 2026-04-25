@@ -21,3 +21,5 @@ export const EDITION_NAME = 'edition';
 
 export const DEVOPS_NAME = 'devops';
 export const USER_INFO_NAME = 'user_info';
+
+export const Tree_NAME = 'tree';

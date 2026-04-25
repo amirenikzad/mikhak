@@ -22,7 +22,7 @@ import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseAct
 import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
 // import { ProBaseHeaderPage3 } from '../../ProBaseHeaderPage3.jsx';
-import ProBaseHeaderPage3 from '../../ProBaseHeaderPage3.jsx';  // بدون {}
+import ProBaseHeaderPage3 from '../../ProBaseHeaderPage3.jsx';
 import { ActionBarTables } from '../../../../Base/ActionBar/ActionBarTables.jsx';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { setBreadcrumbAddress } from '../../../../../store/features/baseSlice.jsx';
@@ -147,11 +147,12 @@ export default function Functionality() {
   const headCellsValues = useMemo(() => [
     CheckBoxName,
     
-    { id: 'description', label: giveText(336) },
+    // { id: 'description', label: giveText(336) },
     { id: 'category_name', label: giveText(220) },
     { id: 'api', label: giveText(376) },
     { id: 'method', label: giveText(36) },
     { id: 'price', label: giveText(196) },
+    { id: 'description', label: giveText(153) },
   ], []);
 
   // پارامترهای فیلتر
@@ -447,7 +448,7 @@ export default function Functionality() {
 // import { CheckBoxName } from '../../../../Base/TableAttributes.jsx';
 // import { useCheckboxTable } from '../../../../Base/CustomHook/useCheckboxTable.jsx';
 // import { useTableBaseActions } from '../../../../Base/CustomHook/useTableBaseActions.jsx';
-import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
+// import { prouseTableBaseActions } from '../../../../Base/CustomHook/prouseTableBaseActions.jsx';
 // import { DialogBody, DialogContent, DialogRoot } from '../../../../ui/dialog.jsx';
 // import { BaseHeaderPage } from '../../BaseHeaderPage.jsx';
 // import { ActionBarTables } from '../../../../Base/ActionBar/ActionBarTables.jsx';

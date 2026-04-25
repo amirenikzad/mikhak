@@ -23,7 +23,8 @@ import {
   DEVOPS_NAME,
   USER_INFO_NAME,
   CATEGORY_NAME,
-  EDITION_NAME
+  EDITION_NAME,
+  Tree_NAME
 } from '../PageNames.jsx';
 import {
   ROLE_ROUTE,
@@ -47,7 +48,8 @@ import {
   DEVOPS_ROUTE,
   USER_INFO_ROUTE,
   CATEGORY_ROUTE,
-  EDITION_ROUTE
+  EDITION_ROUTE,
+  TREE_ROUTE,
 } from '../BaseRouts.jsx';
 import { giveDir, giveText } from '../MultiLanguages/HandleLanguage.jsx';
 import {
@@ -94,6 +96,7 @@ import { UsersManagementIcon } from '../CustomIcons/UsersManagementIcon.jsx';
 import { TopSideMenu } from './Sections/TopSideMenu.jsx';
 import { HamburgerMenu } from './Sections/HamburgerMenu.jsx';
 import { BottomSideMenu } from './Sections/BottomSideMenu.jsx';
+import { TreeIcon } from '../CustomIcons/TreeIcon.jsx';
 
 export const SideMenu = () => {
   const menuSlice = useSelector(state => state.menuSlice);
@@ -230,6 +233,20 @@ export const SideMenu = () => {
                         }} />
       ),
       section: SERVICE_USER_ORGANIZATION_NAME,
+    });
+    (accessSlice.isAdmin || accessSlice.userAccess?.includes(GET_ALL_SERVICE_USER_ORGANIZATION)) && projectManagementList.push({
+      title: giveText(459),
+      type: 'single',
+      method: () => navigate(`${ADMIN_ROUTE}${TREE_ROUTE}`),
+      icon: ({ color = 'white', size = '1.2rem' }) => (
+        <TreeIcon color={color}
+                        width={size}
+                        style={{
+                          marginRight: giveDir() === 'ltr' ? 5 : 0,
+                          marginLeft: giveDir() === 'rtl' ? 5 : 0,
+                        }} />
+      ),
+      section: Tree_NAME,
     });
 
     if (projectManagementList.length) {

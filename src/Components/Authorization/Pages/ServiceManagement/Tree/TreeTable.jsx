@@ -11,21 +11,31 @@ import { EditIcon, RemoveIcon } from '../../../../Base/IconsFeatures/Icons.jsx';
 import { useColorMode } from '../../../../ui/color-mode.jsx';
 import Checkbox from '@mui/material/Checkbox';
 
+// const arePropsEqual = (prevProps, nextProps) => {
+//   if (prevProps.ids.has(prevProps.row?.id) === nextProps.ids.has(nextProps.row?.id)
+//     && (prevProps.row?.name === nextProps.row?.name)
+//     && (prevProps.row?.project_name === nextProps.row?.project_name)
+//     && (prevProps.row?.api === nextProps.row?.api)
+//     && (prevProps.row?.method === nextProps.row?.method)
+//     && (prevProps.row?.price === nextProps.row?.price)
+//     && (prevProps.row?.description === nextProps.row?.description)
+//   ) {
+//     return true; // props are equal
+//   }
+//   return false; // props are not equal -> update the component
+// };
 const arePropsEqual = (prevProps, nextProps) => {
-  if (prevProps.ids.has(prevProps.row?.id) === nextProps.ids.has(nextProps.row?.id)
-    && (prevProps.row?.name === nextProps.row?.name)
-    && (prevProps.row?.project_name === nextProps.row?.project_name)
-    && (prevProps.row?.api === nextProps.row?.api)
-    && (prevProps.row?.method === nextProps.row?.method)
-    && (prevProps.row?.price === nextProps.row?.price)
-    && (prevProps.row?.description === nextProps.row?.description)
-  ) {
-    return true; // props are equal
-  }
-  return false; // props are not equal -> update the component
+  return (
+    prevProps.ids.has(prevProps.row?.id) === nextProps.ids.has(nextProps.row?.id) &&
+    prevProps.row?.tittle === nextProps.row?.tittle &&
+    prevProps.row?.node_count === nextProps.row?.node_count &&
+    prevProps.row?.level_count === nextProps.row?.level_count &&
+    prevProps.row?.event_count === nextProps.row?.event_count &&
+    prevProps.row?.price === nextProps.row?.price
+  );
 };
 
-const FunctionalityTable = memo(function FunctionalityTable({
+const TreeTable = memo(function TreeTable({
                                                               row,
                                                               ids,
                                                               onChangeCheckbox,
@@ -38,7 +48,7 @@ const FunctionalityTable = memo(function FunctionalityTable({
 
   return (
     <TableRow hover role="checkbox" tabIndex={-1}>
-      {hasAccessCheckbox &&
+      {hasAccessCheckbox && 
         <TableCell component="th" scope="row">
           <Center>
             <Checkbox sx={{ color: 'gray' }}
@@ -50,21 +60,27 @@ const FunctionalityTable = memo(function FunctionalityTable({
         </TableCell>
       }
 
-      {/* <TableCell sx={{ px: 0 }} align={'center'} component="th" scope="row">
-        <TableText cursor={'default'} maxLength={20} text={row?.name} />
-      </TableCell> */}
-      
-      
+      <TableCell align={'center'} component="th" scope="row">
+        <TableText cursor={'default'} maxLength={20} text={String(row?.prof_id)} />
+      </TableCell>
 
       <TableCell align={'center'} component="th" scope="row">
-        <TableText cursor={'default'} maxLength={20} text={row?.category_name} />
+        <TableText cursor={'default'} maxLength={20} text={row?.tittle} />
       </TableCell>
 
       <TableCell sx={{ px: 0 }} align={'center'} component="th" scope="row">
-        <TableText cursor={'default'} maxLength={20} text={row?.api} />
+        <TableText cursor={'default'} maxLength={20} text={String(row?.node_count)} />
       </TableCell>
 
-      <TableCell align={'center'} component="th" scope="row">
+      <TableCell sx={{ px: 0 }} align={'center'} component="th" scope="row">
+        <TableText cursor={'default'} maxLength={20} text={String(row?.level_count)} />
+      </TableCell>
+
+      <TableCell sx={{ px: 0 }} align={'center'} component="th" scope="row">
+        <TableText cursor={'default'} maxLength={20} text={String(row?.event_count)} />
+      </TableCell>
+
+      {/* <TableCell align={'center'} component="th" scope="row">
         <Center>
           <Box backgroundColor={methodTagIconColor(row?.method, colorMode)}
                w={'65px'}
@@ -73,16 +89,18 @@ const FunctionalityTable = memo(function FunctionalityTable({
             <Text color={'black'} cursor={'default'}>{row?.method?.toString().toUpperCase()}</Text>
           </Box>
         </Center>
-      </TableCell>
+      </TableCell> */}
 
       <TableCell sx={{ px: 0 }} align={'center'} component="th" scope="row">
-        <TableText cursor={'default'}
-                   maxLength={20}
-                   text={`${commaForEvery3Digit(Math.floor(parseInt(row?.price)))} ${giveText(213)}`} />
-      </TableCell>
-
-      <TableCell sx={{ px: 0 }} align={'center'} component="th" scope="row">
-        <TableText cursor={'default'} maxLength={20} text={row?.description} />
+        <TableText
+          cursor={'default'}
+          maxLength={20}
+          text={
+            row?.price != null
+              ? `${commaForEvery3Digit(Math.floor(Number(row.price)))} ${giveText(213)}`
+              : '-'
+          }
+        />
       </TableCell>
 
       <TableCell align={'center'} component="th" scope="row">
@@ -102,4 +120,4 @@ const FunctionalityTable = memo(function FunctionalityTable({
   );
 }, arePropsEqual);
 
-export default FunctionalityTable;
+export default TreeTable;

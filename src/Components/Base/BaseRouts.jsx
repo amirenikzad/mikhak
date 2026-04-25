@@ -37,3 +37,5 @@ export const PANEL_ROUTE = '/panel';
 export const CATEGORY_ROUTE = '/category';
 
 export const EDITION_ROUTE = '/edition';
+
+export const TREE_ROUTE = '/tree';

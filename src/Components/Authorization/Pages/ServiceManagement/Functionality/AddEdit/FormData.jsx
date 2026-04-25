@@ -269,6 +269,19 @@ export const FormData = ({
                                                             }));
                                                             setCategorySearch(value.category_name);
                                                           }}
+                                                          // onSelectMethod={(value) => {
+                                                          //     console.log('SELECTED VALUE:', value);
+                                                          //     console.log('category_name:', value?.category_name);
+
+                                                          //     setUserTyped(true);
+                                                          //     setApiForm(prev => ({
+                                                          //       ...prev,
+                                                          //       id: { value: String(value.id), isInvalid: false },
+                                                          //       category_name: { value: value.category_name, isInvalid: false },
+                                                          //     }));
+
+                                                          //     setCategorySearch(value.category_name);
+                                                          //   }}
                                                         />
 
         </GridItem>
