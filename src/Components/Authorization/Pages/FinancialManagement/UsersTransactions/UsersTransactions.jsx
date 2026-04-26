@@ -43,6 +43,9 @@ export default function UsersTransactions() {
   const selectUserController = new AbortController();
   const [totalCountLabel, setTotalCountLabel] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
       { type: 'text', text: giveText(254) },
@@ -86,6 +89,44 @@ export default function UsersTransactions() {
     { id: 'balance', label: giveText(345) },
   ], [totalCountLabel]);
 
+  // const queryParameter = useMemo(() => {
+  //   const params = [];
+
+  //   if (selectedOption) {
+  //     params.push(`tr_type=${selectedOption}`);
+  //   }
+
+  //   if (selectedUser?.id) {
+  //     params.push(`user_id=${selectedUser.id}`);
+  //   }
+
+  //   // params.push(`page=${currentPage}`);
+  //   // params.push(`page_size=${pageSize}`);
+
+  //   return params.length ? `&${params.join('&')}` : '';
+  // }, [selectedOption, selectedUser?.id]);
+
+  const queryParameter = useMemo(() => {
+    const params = new URLSearchParams();
+
+    if (selectedOption) {
+      params.append('tr_type', selectedOption);
+    }else{
+      params.append('tr_type', '');
+    }
+
+    if (selectedUser?.id) {
+      params.append('user_id', selectedUser.id);
+    }
+  
+    params.append('page', currentPage);
+    params.append('page_size', pageSize);
+
+    const query = params.toString();
+
+    return query ? `&${query}` : '';
+  }, [selectedOption, selectedUser?.id, currentPage, pageSize]);
+
   const {
     listValue,
     totalCount,
@@ -97,7 +138,7 @@ export default function UsersTransactions() {
     controller,
   } = useTableBaseActions({
     getAllURL: '/transaction_users',
-    queryParameter: `&tr_type=${selectedOption}${selectedUser?.id && `&user_id=${selectedUser?.id}`}`,
+    // queryParameter: `&tr_type=${selectedOption}${selectedUser?.id && `&user_id=${selectedUser?.id}`}`,
     headCellsValues: headCellsValues,
     update: update,
     hasAccessToRemove: false,
@@ -106,6 +147,7 @@ export default function UsersTransactions() {
     reactQueryItemName: reactQueryItemName,
     loadWhenIsTrue: true,
     useQueryDependsUpdate: null,
+    queryParameter,
   });
   useEffect(() => {
     setTotalCountLabel(totalCount ?? 0);
@@ -116,6 +158,7 @@ export default function UsersTransactions() {
       try {
         const response = await fetchWithAxios.get(
           `/user/all?page=${pageParam}&page_size=20&search=${searchedSelectValue}`,
+          // `/user/all?search=${searchedSelectValue}`,
           {
             signal: selectUserController.signal,
           },
@@ -426,6 +469,26 @@ export default function UsersTransactions() {
     );
   });
 
+  
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
   return <>
     <BaseHeaderPage hasAddButton={false}
@@ -464,6 +527,13 @@ export default function UsersTransactions() {
                    setOrderBy={setOrderBy}
                    setOrder={setOrder}
                    lastElementRef={lastElementRef}
+
+                   currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={onNextPage}
+                    onPreviousPage={onPreviousPage}
+                    showPageNavigator={true}
+                    hasPagination={false}
                    body={sortedListValue?.map((row, index) => (
                      memorizedTableRow(row, index)
                    ))} />

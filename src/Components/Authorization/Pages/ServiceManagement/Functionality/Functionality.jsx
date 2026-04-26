@@ -50,6 +50,9 @@ export default function Functionality() {
   const [isOpenRemove, setIsOpenRemove] = useState(false);
   const [totalCountLabel, setTotalCountLabel] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
   const reactQueryItemName = useMemo(() => 'all_functionality_react_query', []);
 
   // ─── گرفتن لیست دسته‌بندی‌ها ────────────────────────────────────────
@@ -159,9 +162,13 @@ export default function Functionality() {
   const queryParameter = useMemo(() => {
     const params = [];
     if (selectedMethod)   params.push(`method=${selectedMethod}`);
-    if (selectedCategory) params.push(`project_id=${selectedCategory}`); // یا category_id=...
+    if (selectedCategory) params.push(`project_id=${selectedCategory}`);
+
+    params.push(`page=${currentPage}`);
+    params.push(`page_size=${pageSize}`);
+    
     return params.length ? '&' + params.join('&') : '';
-  }, [selectedMethod, selectedCategory]);
+  }, [selectedMethod, selectedCategory, currentPage, pageSize]);
 
   const {
     listValue: functionalitiesList,
@@ -220,6 +227,26 @@ export default function Functionality() {
   const onOpenEdit = useCallback((e) => setIsOpenEdit(e.open), []);
   const onOpenAddFunctionality = useCallback((e) => setIsOpenAddFunctionality(e.open), []);
   const onOpenRemove = useCallback((e) => setIsOpenRemove(e.open), []);
+
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
   return (
     <>
@@ -318,6 +345,13 @@ export default function Functionality() {
         isSomeCheckedCheckbox={isAnyChecked}
         lastElementRef={lastElementRef}
         onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={onNextPage}
+        onPreviousPage={onPreviousPage}
+        showPageNavigator={true}
+        hasPagination={false}
         body={sortedListValue?.map((row, index) => (
           <FunctionalityTable
             key={row?.id}

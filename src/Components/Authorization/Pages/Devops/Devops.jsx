@@ -100,11 +100,11 @@ export default function Devops() {
   const observerContainerRef = useRef(null);
   const reactQueryItemName = useMemo(() => 'get_all_devops', []);
   const queryClient = useQueryClient();
-  const pageSize = 20;
   const [totalCount, setTotalCount] = useState(0);
   const [totalCountLabel, setTotalCountLabel] = useState(0);
-
   const [viewType, setViewType] = useState("card"); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
@@ -215,6 +215,26 @@ export default function Devops() {
     { id: 'description', label: giveText(153) }, 
     { id: 'actions', label: giveText(4) }, 
   ];
+  
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
   return (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -528,9 +548,15 @@ export default function Devops() {
             isLoadingListAllUsers={isFetching}
             lastElementRef={lastElementRef}
             headCells={headCells}
-            hasPagination={true}
+            // hasPagination={true}
             px="0"
             mt={0}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onNextPage={onNextPage}
+            onPreviousPage={onPreviousPage}
+            showPageNavigator={true}
+            hasPagination={false}
             body={
               listValue?.map((value, index) => {
                 const isLast = index === listValue.length - 1;

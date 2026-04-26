@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const baseSlice = createSlice({
   name: 'baseSlice',
   initialState: {
-    appVersion: `2.10.3-beta`,
+    appVersion: `2.10.7-beta`,
     breadcrumbAddress: [],
   },
   reducers: {

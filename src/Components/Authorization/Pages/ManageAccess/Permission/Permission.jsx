@@ -471,7 +471,7 @@ export default function Permission() {
                    onPreviousPage={onPreviousPage}
                    showPageNavigator={true}
 
-                   hasPagination={false}
+                  hasPagination={false}
                   lastElementRef={undefined}
 
                    body={sortedListValue?.map((row) => (

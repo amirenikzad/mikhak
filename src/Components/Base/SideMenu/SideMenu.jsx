@@ -97,6 +97,7 @@ import { TopSideMenu } from './Sections/TopSideMenu.jsx';
 import { HamburgerMenu } from './Sections/HamburgerMenu.jsx';
 import { BottomSideMenu } from './Sections/BottomSideMenu.jsx';
 import { TreeIcon } from '../CustomIcons/TreeIcon.jsx';
+import { PanelIcon } from '../CustomIcons/PanelIcon.jsx';
 
 export const SideMenu = () => {
   const menuSlice = useSelector(state => state.menuSlice);
@@ -340,7 +341,7 @@ export const SideMenu = () => {
       title: giveText(457),
       type: 'single',
       method: () => navigate(`${ADMIN_ROUTE}${PANEL_ROUTE}`),
-      icon: ({ color = 'white', size = '1.5rem' }) => <PlatformIcon color={color} width={size} />,
+      icon: ({ color = 'white', size = '1.5rem' }) => <PanelIcon color={color} width={size} />,
       section: PANEL_NAME,
     });
 

@@ -60,6 +60,8 @@ export default function ServiceUserOrganization() {
 
   const observerOrganization = useRef(null);
   const observerService = useRef(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   const allOrganizations = async ({ pageParam = 1 }) => {
     const res = await fetchWithAxios.get(
@@ -177,30 +179,48 @@ export default function ServiceUserOrganization() {
     </Box>
   );
 
+  // const queryParameter = useMemo(() => {
+  //   let q = '';
+
+  //   if (selectedOrganizationFilter.name) {
+  //     q += `&org_id=${encodeURIComponent(selectedOrganizationFilter.id)}`;
+  //   }
+
+  //   if (selectedServiceFilter.name) {
+  //     q += `&service_id=${encodeURIComponent(selectedServiceFilter.id)}`;
+  //   }
+  //   q.page = currentPage;
+  //   q.page_size = pageSize;
+
+  //   return q;
+  // }, [
+  //   selectedOrganizationFilter.name,
+  //   selectedServiceFilter.name,
+  //   currentPage, pageSize
+  // ]);
   const queryParameter = useMemo(() => {
-    let q = '';
+    const params = [];
 
     if (selectedOrganizationFilter.name) {
-      q += `&org_id=${encodeURIComponent(selectedOrganizationFilter.id)}`;
+      params.push(`org_id=${encodeURIComponent(selectedOrganizationFilter.id)}`);
     }
 
     if (selectedServiceFilter.name) {
-      q += `&service_id=${encodeURIComponent(selectedServiceFilter.id)}`;
+      params.push(`service_id=${encodeURIComponent(selectedServiceFilter.id)}`);
     }
 
-    return q;
+    params.push(`page=${currentPage}`);
+    params.push(`page_size=${pageSize}`);
+
+    return '&' + params.join('&');
   }, [
     selectedOrganizationFilter.name,
+    selectedOrganizationFilter.id,
     selectedServiceFilter.name,
+    selectedServiceFilter.id,
+    currentPage,
+    pageSize,
   ]);
-
-
-
-
-
-
-
-
 
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
@@ -303,6 +323,26 @@ export default function ServiceUserOrganization() {
     setIsOpenAddAdvanced(e.open);
   }, []);
 
+    const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
   return <>
     <BaseHeaderPage hasAddButton={hasAccessAdvance}
                     title={<Box display="flex" alignItems="center" gap="8px">
@@ -344,6 +384,13 @@ export default function ServiceUserOrganization() {
                    setOrderBy={setOrderBy}
                    setOrder={setOrder}
                    lastElementRef={lastElementRef}
+
+                   currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={onNextPage}
+                    onPreviousPage={onPreviousPage}
+                    showPageNavigator={true}
+                    hasPagination={false}
                    body={sortedListValue?.map((row, index) => (
                      <ServiceUserOrganizationTable key={row.id}
                                                    row={row}

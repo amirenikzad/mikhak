@@ -31,8 +31,9 @@ export default function Category() {
   const queryClient = useQueryClient();
   const reactQueryItemName = useMemo(() => 'all_category_list_react_query', []);
   const removeId = useMemo(() => 'id', []);
-
   const [totalCountLabel, setTotalCountLabel] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
@@ -78,6 +79,18 @@ export default function Category() {
 
   const checkAccessTable = useMemo(() => accessSlice.isAdmin || accessSlice.userAccess?.includes(PUT_PLATFORM) || accessSlice.userAccess?.includes(DELETE_PLATFORM), [accessSlice]);
 
+  const queryParameter = useMemo(() => {
+    const params = [];
+
+    params.push(`page=${currentPage}`);
+    params.push(`page_size=${pageSize}`);
+
+    return '&' + params.join('&');
+  }, [
+    currentPage,
+    pageSize,
+  ]);
+
   const {
     listValue: CategoryList,
     totalCount,
@@ -100,6 +113,7 @@ export default function Category() {
     responseKey: 'categories',
     searchValue: searchValue,
     reactQueryItemName: reactQueryItemName,
+    queryParameter
   });
 
   useEffect(() => {
@@ -129,6 +143,27 @@ export default function Category() {
   const onOpenEditCategory = useCallback((e) => setIsOpenEditCategory(e.open), []);
   const onOpenRemove = useCallback((e) => setIsOpenRemove(e.open), []);
   const onOpenAddCategory = useCallback((e) => setIsOpenAddCategory(e.open), []);
+
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
 
   return <>
     <BaseHeaderPage hasAddButton={accessSlice.isAdmin || accessSlice.userAccess?.includes(POST_PLATFORM)}
@@ -166,6 +201,13 @@ export default function Category() {
                    isSomeCheckedCheckbox={isAnyChecked}
                    lastElementRef={lastElementRef}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+
+                   currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={onNextPage}
+                    onPreviousPage={onPreviousPage}
+                    showPageNavigator={true}
+                    hasPagination={false}
                     body={sortedListValue?.map((row) => (
                         <CategoryTable key={row?.id}
                                     ids={ids}

@@ -31,8 +31,9 @@ export default function Edition() {
   const queryClient = useQueryClient();
   const reactQueryItemName = useMemo(() => 'all_edition_list_react_query', []);
   const removeId = useMemo(() => 'id', []);
-
   const [totalCountLabel, setTotalCountLabel] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
@@ -77,6 +78,17 @@ export default function Edition() {
   }, []);
 
   const checkAccessTable = useMemo(() => accessSlice.isAdmin || accessSlice.userAccess?.includes(PUT_EDITION) || accessSlice.userAccess?.includes(DELETE_EDITION), [accessSlice]);
+  const queryParameter = useMemo(() => {
+    const params = [];
+
+    params.push(`page=${currentPage}`);
+    params.push(`page_size=${pageSize}`);
+
+    return '&' + params.join('&');
+  }, [
+    currentPage,
+    pageSize,
+  ]);
 
   const {
     listValue: editionList,
@@ -100,6 +112,7 @@ export default function Edition() {
     responseKey: 'editions',
     searchValue: searchValue,
     reactQueryItemName: reactQueryItemName,
+    queryParameter
   });
 
   useEffect(() => {
@@ -129,6 +142,26 @@ export default function Edition() {
   const onOpenEditEdition = useCallback((e) => setIsOpenEditEdition(e.open), []);
   const onOpenRemove = useCallback((e) => setIsOpenRemove(e.open), []);
   const onOpenAddEdition = useCallback((e) => setIsOpenAddEdition(e.open), []);
+
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
   return <>
     <BaseHeaderPage hasAddButton={accessSlice.isAdmin || accessSlice.userAccess?.includes(POST_EDITION)}
@@ -166,6 +199,13 @@ export default function Edition() {
                    isSomeCheckedCheckbox={isAnyChecked}
                    lastElementRef={lastElementRef}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+
+                   currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={onNextPage}
+                    onPreviousPage={onPreviousPage}
+                    showPageNavigator={true}
+                    hasPagination={false}
                     body={sortedListValue?.map((row) => (
                         <EditionTable key={row?.id}
                                     ids={ids}

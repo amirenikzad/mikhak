@@ -44,6 +44,9 @@ export default function UserWallet() {
   const reactQueryItemName = useMemo(() => 'all_users_wallet_list_react_query', []);
   const [totalCountLabel, setTotalCountLabel] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     if (searchValue) {
@@ -158,6 +161,10 @@ export default function UserWallet() {
     { id: 'suspend', label: giveText(194) },
   ], [totalCountLabel]);
 
+  const queryParameter = useMemo(() => {
+    return `&page=${currentPage}&page_size=${pageSize}`;
+  }, [currentPage, pageSize]);
+
   const {
     listValue,
     totalCount,
@@ -177,7 +184,8 @@ export default function UserWallet() {
     searchValue: searchValue,
     reactQueryItemName: reactQueryItemName,
     useQueryDependsUpdate: null,
-    
+    queryParameter,
+
   });
 
   useEffect(() => {
@@ -218,6 +226,26 @@ export default function UserWallet() {
 
   const onOpenAddPrice = useCallback((e) => setIsOpenAddPrice(e.open), []);
   const onOpenAddPriceMultiple = useCallback((e) => setIsOpenAddPriceMultiple(e.open), []);
+  
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
 
   return <>
     <BaseHeaderPage hasAddButton={false}
@@ -254,6 +282,14 @@ export default function UserWallet() {
                    isSomeCheckedCheckbox={isAnyChecked}
                    lastElementRef={lastElementRef}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+
+                   currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={onNextPage}
+                    onPreviousPage={onPreviousPage}
+                    showPageNavigator={true}
+                    hasPagination={false}
+
                    body={sortedListValue?.map((row, index) => (
                      <UserWalletTable key={row?.user_id}
                                       ids={ids}

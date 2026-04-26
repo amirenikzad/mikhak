@@ -72,7 +72,7 @@ export default function Tree() {
   }, [dispatch]);
 
   const handleFields = (form) => {
-    return !form.api?.value || !form.method?.value || !form.project_id?.value;
+    return !form.prof_id?.value || !form.tittle?.value;
   };
 
   const editFunctionalitiesAxios = (props = {} || null) => {
@@ -90,32 +90,22 @@ export default function Tree() {
         status: 2,
       });
       handleErrors(props.TreeForm, props.setPermissionForm, [
-        // 'name',
-        'description',
-        'project_id',
-        'api',
-        'method',
+        'prof_id',
+        'tittle',
       ]);
 
     } else {
       const toastId = promiseToast();
       dispatch(setIsFetchingApis(true));
-      let rawMethod = props.TreeForm.method.value;
-      if (Array.isArray(rawMethod)) {
-        rawMethod = rawMethod[0]; 
-      }
-      const method = String(rawMethod).replace(/['"]/g, '');
-      console.log('props.TreeForm',props);
 
       fetchWithAxios.put(`/tree`,
         {
-          'tree_id': props.TreeForm.id,
-          // 'name': props.TreeForm.name.value,
-          'description': props.TreeForm.description.value,
-          'project_id': props.TreeForm.project_id.value,
-          'api': props.TreeForm.api.value,
-          // 'method': props.TreeForm.method.value,
-          'method': method,
+          'id': props.TreeForm.id,
+          'prof_id': props.TreeForm.prof_id.value,
+          'tittle': props.TreeForm.tittle.value,
+          'node_count': parseInt(props.TreeForm.node_count.value.toString()),
+          'level_count': parseInt(props.TreeForm.level_count.value.toString()),
+          'event_count': parseInt(props.TreeForm.event_count.value.toString()),
           'price': parseInt(props.TreeForm.price.value.toString()),
         },
       ).then((response) => {
@@ -220,6 +210,28 @@ export default function Tree() {
   const onOpenAddTree = useCallback((e) => setIsOpenAddTree(e.open), []);
   const onOpenRemove = useCallback((e) => setIsOpenRemove(e.open), []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
   return (
     <>
       <ProBaseHeaderPage3
@@ -319,6 +331,14 @@ export default function Tree() {
         isSomeCheckedCheckbox={isAnyChecked}
         lastElementRef={lastElementRef}
         onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={onNextPage}
+        onPreviousPage={onPreviousPage}
+        showPageNavigator={true}
+        hasPagination={false}
+
         body={sortedListValue?.map((row, index) => (
           <TreeTable
             key={row?.id}

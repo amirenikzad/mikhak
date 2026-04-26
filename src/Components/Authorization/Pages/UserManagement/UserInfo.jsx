@@ -42,6 +42,8 @@ export default function UserInfo() {
   const observer = useRef(null);
   const selectUserController = new AbortController();
   const selectOrgController = new AbortController();
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
   // breadcrumb
   useEffect(() => {
@@ -216,8 +218,12 @@ export default function UserInfo() {
       if (selectedUser?.id)    q += `&user_id=${selectedUser.id}`;
       if (selectedOrg?.id)     q += `&org_id=${selectedOrg.id}`;
       if (selectedPlatform?.id) q += `&project=${selectedPlatform.id}`;
+
+      q += `&page=${currentPage}`;
+      q += `&page_size=${pageSize}`;
+
       return q;
-    }, [selectedUser?.id, selectedOrg?.id, selectedPlatform?.id]);
+    }, [selectedUser?.id, selectedOrg?.id, selectedPlatform?.id, currentPage, pageSize]);
 
 
   // const queryParameter = useMemo(() => {
@@ -464,6 +470,26 @@ export default function UserInfo() {
     [order, orderBy, stableSort, listValue],
   );
 
+    const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
   return (
     <>
       <BaseHeaderPage
@@ -500,6 +526,13 @@ export default function UserInfo() {
         setOrderBy={setOrderBy}
         setOrder={setOrder}
         lastElementRef={lastElementRef}
+
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={onNextPage}
+        onPreviousPage={onPreviousPage}
+        showPageNavigator={true}
+        hasPagination={false}
         body={sortedListValue?.map((row, index) => (
           <TableRow hover tabIndex={-1} key={index}>
             <TableCell align="center">

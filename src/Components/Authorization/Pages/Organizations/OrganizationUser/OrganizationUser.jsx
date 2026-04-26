@@ -40,6 +40,9 @@ export default function OrganizationUser() {
   const reactQueryItemName = useMemo(() => 'get_organization_user_list', []);
   const [totalCountLabel, setTotalCountLabel] = useState(0);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
   useEffect(() => {
     dispatch(setBreadcrumbAddress([
       { type: 'text', text: giveText(183) },
@@ -154,6 +157,27 @@ export default function OrganizationUser() {
     setIsOpenConfig(e.open);
   }, []);
 
+  const totalPages = useMemo(() => {
+    const count = totalCount ?? 0;
+    return Math.max(1, Math.ceil(count / pageSize));
+  }, [totalCount, pageSize]);
+
+  useEffect(() => {
+    if (totalCount == null) return; 
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages, totalCount]);
+
+  const onNextPage = useCallback(() => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  }, [totalPages]);
+
+  const onPreviousPage = useCallback(() => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  }, []);
+
+
   return <>
     <BaseHeaderPage hasAddButton={hasAccessAdvance}
                     title={<Box display="flex" alignItems="center" gap="8px">
@@ -191,6 +215,14 @@ export default function OrganizationUser() {
                    isSomeCheckedCheckbox={isAnyChecked}
                    lastElementRef={lastElementRef}
                    onChangeCheckboxAll={() => onChangeCheckboxAll(sortedListValue)}
+
+                   currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={onNextPage}
+                    onPreviousPage={onPreviousPage}
+                    showPageNavigator={true}
+                    hasPagination={false}
+
                    body={sortedListValue?.map((row, index) => (
                      <OrganizationUserTable key={row?.id}
                                             index={index}

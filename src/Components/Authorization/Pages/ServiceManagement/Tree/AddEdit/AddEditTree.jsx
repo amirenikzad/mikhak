@@ -27,15 +27,12 @@ export default function AddEditTree({
   const dispatch = useDispatch();
   const [TreeForm, setTreeForm] = useState({
     id: formField?.id,
-    name: { value: editing ? formField?.name : '', isInvalid: false },
-    description: { value: editing ? formField?.description : '', isInvalid: false },
+    prof_id: { value: editing ? formField?.prof_id : '', isInvalid: false },
+    tittle: { value: editing ? formField?.tittle : '', isInvalid: false },
+    node_count: { value: editing ? formField?.node_count : 0, isInvalid: false },
+    level_count: { value: editing ? formField?.level_count : 0, isInvalid: false },
+    event_count: { value: editing ? formField?.event_count : 0, isInvalid: false },
     price: { value: editing ? formField?.price : 0, isInvalid: false },
-    project_id: { value: editing ? String(formField?.id) : 0, isInvalid: false },
-    category_name: { value: editing ? formField?.category_name : '', isInvalid: false },
-    api: { value: editing ? formField?.api : '', isInvalid: false },
-    method: { value: editing ? formField?.method : '', isInvalid: false },
-    project_light_icon: { value: editing ? formField?.project_light_icon : '', isInvalid: false },
-    project_dark_icon: { value: editing ? formField?.project_dark_icon : '', isInvalid: false },
   });
   // console.log("TreeForm end",TreeForm);
   // console.log("formField end",formField);
@@ -59,10 +56,8 @@ export default function AddEditTree({
       });
 
     } else if (
-      // TreeForm.name.value === '' ||
-      TreeForm.project_id.value === '' ||
-      TreeForm.api.value === '' ||
-      TreeForm.method.value === '') {
+      TreeForm.prof_id.value === '' ||
+      TreeForm.tittle.value === '') {
       showToast({
         title: giveText(30),
         description: giveText(26),
@@ -71,11 +66,8 @@ export default function AddEditTree({
       handleErrors(TreeForm,
         setTreeForm,
         [
-          // 'name',
-          'description',
-          'project_id',
-          'api',
-          'method',
+          'prof_id',
+          'tittle',
         ]);
 
     } else {
@@ -84,11 +76,11 @@ export default function AddEditTree({
 
       fetchWithAxios.post(`/tree`,
         {
-          // 'name': TreeForm.name.value,
-          'description': TreeForm.description.value,
-          'category_id': TreeForm.project_id.value,
-          'api': TreeForm.api.value,
-          'method': TreeForm.method.value[0],
+          'prof_id': TreeForm.prof_id.value,
+          'tittle': TreeForm.tittle.value,
+          'node_count': parseInt(TreeForm.node_count.value.toString()),
+          'level_count': parseInt(TreeForm.level_count.value.toString()),
+          'event_count': parseInt(TreeForm.event_count.value.toString()),
           'price': parseInt(TreeForm.price.value.toString()),
         },
       ).then((response) => {
