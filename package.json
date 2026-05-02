@@ -1,7 +1,7 @@
 {
   "name": "mikhak",
   "private": true,
-  "version": "2.10.11-beta",
+  "version": "2.10.12-beta",
   "type": "module",
   "scripts": {
     "dev": "vite",

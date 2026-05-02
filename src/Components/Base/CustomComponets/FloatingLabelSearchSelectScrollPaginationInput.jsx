@@ -1,5 +1,5 @@
 import { Input, Field, InputGroup, Box, Text } from '@chakra-ui/react';
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { MENU_BACKGROUND_DARK, MENU_BACKGROUND_DARK_HOVER, MENU_BACKGROUND_LIGHT } from '../BaseColor.jsx';
 import { giveDir } from '../MultiLanguages/HandleLanguage.jsx';
 import { User } from '../Extensions.jsx';
@@ -12,7 +12,6 @@ import { useSearchParams } from 'react-router';
 import { forwardRef, useImperativeHandle } from 'react';
 import { CircularCrossFillIcon } from '../CustomIcons/CircularCrossFillIcon.jsx';
 
-// const FloatingLabelSearchSelectScrollPaginationInput = memo(forwardRef( function FloatingLabelUserSearchSelectScrollPaginationInput({
 const FloatingLabelSearchSelectScrollPaginationInput = memo(function FloatingLabelUserSearchSelectScrollPaginationInput({
                                                                                                                           label,
                                                                                                                           onChange,
@@ -46,6 +45,7 @@ const FloatingLabelSearchSelectScrollPaginationInput = memo(function FloatingLab
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loadedFromQueryParameter, setLoadedFromQueryParameter] = useState(false);
+  const containerRef = useRef(null);
 
   const handleFocus = () => {
     if (!disabled) {
@@ -58,6 +58,7 @@ const FloatingLabelSearchSelectScrollPaginationInput = memo(function FloatingLab
     setTimeout(() => {
       setIsFocused(false);
       // setDropdownOpen(false);
+      setDropdownOpen(false);
     }, 200);
   };
 
@@ -86,6 +87,23 @@ const FloatingLabelSearchSelectScrollPaginationInput = memo(function FloatingLab
     }
   }, [list]);
 
+    useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!containerRef.current) return;
+      if (!containerRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+        setIsFocused(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+
 const clearButton = (!disabled && value) && (
   <Box
     cursor="pointer"
@@ -101,7 +119,7 @@ const clearButton = (!disabled && value) && (
 );
 
   return (
-    <Box position={'relative'} maxW={maxW} minW={minW}>
+    <Box ref={containerRef} position={'relative'} maxW={maxW} minW={minW}>
       <Text position={'absolute'}
             top={isFocused || value ? '-8px' : '50%'}
             left={giveDir() === 'ltr' && '12px'}
@@ -212,8 +230,9 @@ const clearButton = (!disabled && value) && (
                  }
                  cursor={'pointer'}
                  _hover={{ backgroundColor: colorMode === 'light' ? 'gray.200' : MENU_BACKGROUND_DARK_HOVER }}
-                 onClick={(e) => {
-                   e.preventDefault(); // Prevent blur
+                //  onClick={(e) => {
+                 onMouseDown={(e) => {
+                   e.preventDefault();
                    if (!disabled) {
                      onSelectItem(listValue);
                    }
