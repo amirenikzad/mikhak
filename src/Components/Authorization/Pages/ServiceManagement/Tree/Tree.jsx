@@ -101,6 +101,7 @@ export default function Tree() {
       fetchWithAxios.put(`/tree`,
         {
           'id': props.TreeForm.id,
+          // 'prof_id': props.TreeForm.prof_id.value,
           'prof_id': props.TreeForm.prof_id.value,
           'tittle': props.TreeForm.tittle.value,
           'node_count': parseInt(props.TreeForm.node_count.value.toString()),
@@ -168,7 +169,7 @@ export default function Tree() {
     checkAccess: true,
     headCellsValues,
     update: updated,
-    removeURL: '/tree',
+    removeURL: '/tree/all',
     removeId: 'id',
     removeIdRequest: 'tree_id',
     responseKey: 'tree',

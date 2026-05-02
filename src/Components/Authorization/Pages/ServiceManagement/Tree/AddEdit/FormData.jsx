@@ -109,7 +109,9 @@ export const FormData = ({
                               type={'text'}
                               mx={3}
                               onKeyDown={(event) => handleEnter(event, buttonId)}
-                              onChange={changeInputs} />
+                              // onChange={changeInputs}
+                              isDisabled
+                               />
         </GridItem>
 
         <GridItem colSpan={1}>
@@ -121,7 +123,9 @@ export const FormData = ({
                               type={'text'}
                               mx={3}
                               onKeyDown={(event) => handleEnter(event, buttonId)}
-                              onChange={changeInputs} />
+                              // onChange={changeInputs}
+                              isDisabled
+                               />
         </GridItem>
       </Grid>
 
@@ -135,7 +139,9 @@ export const FormData = ({
                               type={'text'}
                               mx={3}
                               onKeyDown={(event) => handleEnter(event, buttonId)}
-                              onChange={changeInputs} />
+                              // onChange={changeInputs}
+                              isDisabled
+                               />
         </GridItem>
 
         <GridItem colSpan={1} my={'auto'}>
@@ -164,7 +170,9 @@ export const FormData = ({
                               type={'text'}
                               mx={3}
                               onKeyDown={(event) => handleEnter(event, buttonId)}
-                              onChange={changeInputs} />
+                              // onChange={changeInputs}
+                              isDisabled
+                               />
         </GridItem>
 
         <GridItem colSpan={1}>
@@ -176,7 +184,9 @@ export const FormData = ({
                               type={'text'}
                               mx={3}
                               onKeyDown={(event) => handleEnter(event, buttonId)}
-                              onChange={changeInputs} />
+                              // onChange={changeInputs}
+                              isDisabled
+                               />
         </GridItem>
       </Grid>
 
@@ -186,7 +196,9 @@ export const FormData = ({
                              minH={'130px'}
                              value={apiForm.description.value}
                              type={'text'}
-                             onChange={changeInputs} /> */}
+                             // onChange={changeInputs}
+                              isDisabled
+                               /> */}
     </Stack>
   );
 };
