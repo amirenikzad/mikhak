@@ -20,14 +20,15 @@ export const PlatformName = memo(function PlatformName({ organizationForm, setOr
   const observerPlatformName = useRef(null);
   const [organizationAdminNameListValue, setPlatformNameListValue] = useState([]);
   const controllerRef = useRef(null);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   const allPlatformNamesListAxios = async ({ pageParam = 1 }) => {
     try {
-      if (controllerRef.current && page === pageParam) {
+      // if (controllerRef.current && page === pageParam) {
+      if (controllerRef.current) {
         controllerRef.current.abort();
       }
-      setPage(pageParam);
+      // setPage(pageParam);
 
       const newController = new AbortController();
       controllerRef.current = newController;
@@ -58,6 +59,7 @@ export const PlatformName = memo(function PlatformName({ organizationForm, setOr
     queryKey: ['get_all_organization_platform_names', organizationForm.platform_name.value],
     queryFn: allPlatformNamesListAxios,
     initialPageParam: 1,
+    enabled: !organizationForm?.platform_id?.value,
     getNextPageParam: (lastPage) => lastPage?.next_page,
   });
 
@@ -104,6 +106,10 @@ export const PlatformName = memo(function PlatformName({ organizationForm, setOr
                                                                 ...prevState,
                                                                 'platform_name': {
                                                                     value: event.target.value,
+                                                                    isInvalid: prevState['isInvalid'],
+                                                                },
+                                                                'platform_id': {
+                                                                    value: '',
                                                                     isInvalid: prevState['isInvalid'],
                                                                 },
                                                             };
