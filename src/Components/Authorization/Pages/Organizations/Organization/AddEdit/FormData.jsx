@@ -34,6 +34,7 @@ export const FormData = ({
                            submitFunc,
                            isLoadingSubmitButton,
                            editing = false,
+                           organizationList = [],
                          }) => {
   const mapOrganizationSlice = useSelector(state => state.mapOrganizationSlice);
   const dispatch = useDispatch();
@@ -98,7 +99,9 @@ export const FormData = ({
                             setOrganizationForm={setOrganizationForm}
                             editing={editing} />
                             
-          <OrganizationParentName organizationForm={organizationForm} setOrganizationForm={setOrganizationForm} />
+          <OrganizationParentName organizationForm={organizationForm}
+                                  setOrganizationForm={setOrganizationForm}
+                                  baseOrganizationList={organizationList} />
 
           <FloatingLabelTextArea label={giveText(35)}
                                  name={'address'}

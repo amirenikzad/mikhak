@@ -1,7 +1,7 @@
 import { giveText } from '../../../../../../Base/MultiLanguages/HandleLanguage.jsx';
 import { fetchWithAxios } from '../../../../../../Base/axios/FetchAxios.jsx';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import FloatingLabelSearchSelectScrollPaginationInput
   from '../../../../../../Base/CustomComponets/FloatingLabelSearchSelectScrollPaginationInput.jsx';
 import { ChevronDownOutlineIcon } from '../../../../../../Base/CustomIcons/ChevronDownOutlineIcon.jsx';
@@ -12,17 +12,23 @@ const arePropsEqual = (prevProps, nextProps) => {
     && (prevProps.organizationForm?.name === nextProps.organizationForm?.name)
     // && (prevProps.organizationForm?.admin_id === nextProps.organizationForm?.admin_id)
     // && (prevProps.organizationForm?.admin_id === nextProps.organizationForm?.admin_id)
+    && (prevProps.baseOrganizationList === nextProps.baseOrganizationList)
   ) {
     return true; // props are equal
   }
   return false; // props are not equal -> update the component
 };
 
-export const OrganizationParentName = memo(function OrganizationParentName({ organizationForm, setOrganizationForm }) {
+export const OrganizationParentName = memo(function OrganizationParentName({ organizationForm, setOrganizationForm, baseOrganizationList = [] }) {
   const [organizationListValue, setOrganizationListValue] = useState([]);
   const observer = useRef(null);
   const controllerRef = useRef(null);
   const [page, setPage] = useState(1);
+  const [canLoadMorePages, setCanLoadMorePages] = useState(false);
+
+  const filteredBaseOrganizationList = useMemo(() => {
+    return baseOrganizationList.filter(org => org?.name !== organizationForm.name.value);
+  }, [baseOrganizationList, organizationForm.name.value]);
 
   const allOrganizationListAxios = async ({ pageParam = 1 }) => {
     try {
@@ -62,6 +68,7 @@ export const OrganizationParentName = memo(function OrganizationParentName({ org
     queryKey: ['get_all_organization_add_edit', organizationForm.parent_name.value],
     queryFn: allOrganizationListAxios,
     initialPageParam: 1,
+    enabled: canLoadMorePages,
     getNextPageParam: (lastPage) => lastPage?.next_page,
   });
 
@@ -80,10 +87,15 @@ export const OrganizationParentName = memo(function OrganizationParentName({ org
   }, [isFetching, hasNextPage, fetchNextPage]);
 
   useEffect(() => {
+    if (!canLoadMorePages) {
+      setOrganizationListValue(filteredBaseOrganizationList);
+      return;
+    }
+
     if (data) {
       setOrganizationListValue(data?.pages.flatMap((page) => page?.organizations));
     }
-  }, [data]);
+  }, [data, canLoadMorePages, filteredBaseOrganizationList]);
 
   return (
     <FloatingLabelSearchSelectScrollPaginationInput label={giveText(301)}
@@ -103,6 +115,9 @@ export const OrganizationParentName = memo(function OrganizationParentName({ org
                                                     value={organizationForm.parent_name.value}
                                                     disabled={!organizationForm.name.value}
                                                     onChange={(event) => {
+                                                          if (event.target.value === '') {
+                                                            setCanLoadMorePages(true);
+                                                          }
                                                           setOrganizationForm(prevState => {
                                                             return {
                                                               ...prevState,
@@ -114,6 +129,7 @@ export const OrganizationParentName = memo(function OrganizationParentName({ org
                                                           });
                                                         }}
                                                     onSelectMethod={(value) => {
+                                                          setCanLoadMorePages(false);
                                                           setOrganizationForm(prevState => {
                                                             return {
                                                               ...prevState,

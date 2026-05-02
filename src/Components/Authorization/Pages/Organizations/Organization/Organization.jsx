@@ -260,7 +260,8 @@ export default function Organization() {
                                    setIsOpenEditOrganization(false);
                                    updated();
                                  }}
-                                 organization={organization} />
+                                  organization={organization}
+                                 organizationList={organizationList} />
           </Suspense>
         </DialogBody>
       </DialogContent>
@@ -296,7 +297,8 @@ export default function Organization() {
                                  onCloseModal={() => {
                                    setIsOpenAddOrganization(false);
                                    updated();
-                                 }} />
+                                  }}
+                                  organizationList={organizationList} />
           </Suspense>
         </DialogBody>
       </DialogContent>

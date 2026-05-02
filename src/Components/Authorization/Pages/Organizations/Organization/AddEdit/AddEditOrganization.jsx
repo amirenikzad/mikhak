@@ -14,7 +14,7 @@ import { fetchWithAxios } from '../../../../../Base/axios/FetchAxios.jsx';
 import { setIsFetchingOrganization } from '../../../../../../store/features/isLoadingSlice.jsx';
 import { setCroppedImage } from '../../../../../../store/features/cropImageSlice.jsx';
 
-export default function AddEditOrganization({ onCloseModal, organization = {}, editing }) {
+export default function AddEditOrganization({ onCloseModal, organization = {}, editing, organizationList = [] }) {
   const mapOrganizationSlice = useSelector(state => state.mapOrganizationSlice);
   const cropImageSlice = useSelector(state => state.cropImageSlice);
   const isLoadingSlice = useSelector(state => state.isLoadingSlice);
@@ -134,7 +134,8 @@ export default function AddEditOrganization({ onCloseModal, organization = {}, e
                                buttonId={buttonId}
                                organizationForm={organizationForm}
                                setOrganizationForm={setOrganizationForm}
-                               editing={editing} />}
+                                editing={editing}
+                               organizationList={organizationList} />}
                                 />
     </motion.div>
   );
